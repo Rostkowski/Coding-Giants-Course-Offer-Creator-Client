@@ -3,12 +3,15 @@ import React, { useState } from "react";
 import SelectCountry from "./Steps/SelectCountry";
 import CountryObject from "../models/CountryObject";
 import SelectCourseKind from "./Steps/SelectCourseKind";
+import SelectLocalisationForStationaryCourse from "./Steps/SelectLocalisationForStationaryCourse";
 
 const OfferCreationForm = () => {
   const [step, setStep] = useState(0);
   const [currentLanguage, setCurrentLanguage] = useState("pl-PL");
   const [currentCountryCode, setCurrentCountryCode] = useState("PL");
-  const [selectedCourseKind, setSelectedCourseKind] = useState("SEMESTER_ONLINE");
+  const [selectedCourseKind, setSelectedCourseKind] =
+    useState("SEMESTER_ONLINE");
+  const [selectedLocalisation, setSelectedLocalisation] = useState(0);
 
   const countrySelectionHandler = (countryObject: CountryObject) => {
     setCurrentLanguage(countryObject.countryLanguage);
@@ -18,6 +21,12 @@ const OfferCreationForm = () => {
 
   const courseKindSelectionHandler = (event: any) => {
     setSelectedCourseKind(event.target.value);
+    nextStep();
+  };
+
+  const courseLocalisationSelectionHandler = (choice: number) => {
+    console.log(choice);
+    setSelectedLocalisation(choice);
     nextStep();
   };
 
@@ -46,6 +55,18 @@ const OfferCreationForm = () => {
       );
       break;
     case 2:
+      if (selectedCourseKind === "SEMESTER_STATIONARY") {
+        currentStepComponent = (
+          <SelectLocalisationForStationaryCourse
+            currentCountryCode={currentCountryCode}
+            currentLanguage={currentLanguage}
+            selectedCourseKind={selectedCourseKind}
+            onLocalisationSelection={courseLocalisationSelectionHandler}
+          />
+        );
+      } else {
+        nextStep();
+      }
       break;
     default:
       currentStepComponent = (
