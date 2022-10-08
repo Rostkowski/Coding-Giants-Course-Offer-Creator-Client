@@ -12,19 +12,19 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
       key: 0,
       countryLanguage: "fr-FR",
       countryCode: "FR",
-      countryName: "France"
+      countryName: "France",
     },
     {
       key: 1,
       countryLanguage: "pl-PL",
       countryCode: "PL",
-      countryName: "Poland"
+      countryName: "Poland",
     },
     {
       key: 2,
       countryLanguage: "it-IT",
       countryCode: "IT",
-      countryName: "Italy"
+      countryName: "Italy",
     },
   ];
 
@@ -44,7 +44,9 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
       <select onChange={countrySelectionHandler} value="---">
         <option value="---">---</option>
         {countryList.map((country) => (
-          <option key={country.key} value={country.countryCode}>{country.countryName}</option>
+          <option key={country.key} value={country.countryCode}>
+            {country.countryName}
+          </option>
         ))}
       </select>
     </div>

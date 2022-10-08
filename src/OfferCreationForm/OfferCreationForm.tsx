@@ -2,15 +2,22 @@ import React, { useState } from "react";
 
 import SelectCountry from "./Steps/SelectCountry";
 import CountryObject from "../models/CountryObject";
+import SelectCourseKind from "./Steps/SelectCourseKind";
 
 const OfferCreationForm = () => {
   const [step, setStep] = useState(0);
   const [currentLanguage, setCurrentLanguage] = useState("pl-PL");
   const [currentCountryCode, setCurrentCountryCode] = useState("PL");
+  const [selectedCourseKind, setSelectedCourseKind] = useState("SEMESTER_ONLINE");
 
   const countrySelectionHandler = (countryObject: CountryObject) => {
     setCurrentLanguage(countryObject.countryLanguage);
     setCurrentCountryCode(countryObject.countryCode);
+    nextStep();
+  };
+
+  const courseKindSelectionHandler = (event: any) => {
+    setSelectedCourseKind(event.target.value);
     nextStep();
   };
 
@@ -27,9 +34,18 @@ const OfferCreationForm = () => {
   };
 
   let currentStepComponent;
+
   switch (step) {
     case 1:
-      currentStepComponent = <p>hello</p>;
+      currentStepComponent = (
+        <SelectCourseKind
+          currentCountrycode={currentCountryCode}
+          currentLanguage={currentLanguage}
+          onCourseKindSelection={courseKindSelectionHandler}
+        />
+      );
+      break;
+    case 2:
       break;
     default:
       currentStepComponent = (
@@ -38,6 +54,7 @@ const OfferCreationForm = () => {
           onCountrySelection={countrySelectionHandler}
         />
       );
+      break;
   }
 
   return (
