@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const OfferCreationForm = () => {
-    return (
-        <form>
-            <label>test</label>
-        </form>
-    );
+  return (
+    <div className="form-container">
+      <form></form>
+    </div>
+  );
 };
 
 export default OfferCreationForm;
