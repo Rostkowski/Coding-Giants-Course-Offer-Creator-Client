@@ -33,7 +33,6 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
     const countryObject = countryList.find(
       (country) => country.countryCode === selectedCountry
     );
-    console.log(countryObject);
     if (countryObject !== undefined) {
       props.onCountrySelection(countryObject);
     }
