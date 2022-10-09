@@ -26,6 +26,12 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
       countryCode: "IT",
       countryName: "Italy",
     },
+    {
+      key: 3,
+      countryLanguage: "en-US",
+      countryCode: "US",
+      countryName: "United States of America",
+    },
   ];
 
   const countrySelectionHandler = (event: any) => {
