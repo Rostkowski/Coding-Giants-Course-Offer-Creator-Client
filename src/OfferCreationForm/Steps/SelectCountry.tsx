@@ -10,24 +10,12 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
   const countryList = [
     {
       key: 0,
-      countryLanguage: "fr-FR",
-      countryCode: "FR",
-      countryName: "France",
-    },
-    {
-      key: 1,
       countryLanguage: "pl-PL",
       countryCode: "PL",
       countryName: "Poland",
     },
     {
-      key: 2,
-      countryLanguage: "it-IT",
-      countryCode: "IT",
-      countryName: "Italy",
-    },
-    {
-      key: 3,
+      key: 1,
       countryLanguage: "en-US",
       countryCode: "US",
       countryName: "United States of America",

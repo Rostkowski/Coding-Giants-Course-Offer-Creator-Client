@@ -38,7 +38,6 @@ const OfferCreationForm = () => {
   };
 
   const courseSelectionHandler = (choice: { value: number; label: string }) => {
-    console.log(choice);
     setSelectedCourse(choice.value);
   };
 
@@ -94,6 +93,8 @@ const OfferCreationForm = () => {
           onCourseSelection={courseSelectionHandler}
         />
       );
+      break;
+    case 4:
       break;
     default:
       if (step > 0) {
