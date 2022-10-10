@@ -18,8 +18,8 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
     }
   };
   const [courseObject, setCourseObject] = useState<any[]>([]);
+
   useEffect(() => {
-    console.log(props.selectedCourse);
     let tempCourseArray: any[] = [];
     props.selectedCourse.forEach((course) => {
       fetch(
@@ -34,12 +34,19 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
       )
         .then((response) => response.json())
         .then((data) => {
-          tempCourseArray.push(data);
+          if (
+            !(
+              tempCourseArray.filter((element) => element.id === data.id)
+                .length > 0
+            )
+          ) {
+            tempCourseArray.push(data);
+          }
         });
     });
     setCourseObject(tempCourseArray);
-    console.log(tempCourseArray);
   }, [props.currentCountryCode, props.currentLanguage, props.selectedCourse]);
+
   return (
     <>
       <Editor

@@ -54,6 +54,7 @@ const OfferCreationForm = () => {
     setSelectedLocalisation(choice);
     nextStep();
   };
+
   const courseSelectionHandler = (
     newValue: OnChangeValue<{ value: number; label: string }, true>,
     actionMeta: ActionMeta<{ value: number; label: string }>
@@ -77,7 +78,12 @@ const OfferCreationForm = () => {
     setStep((prevState) => {
       if (step === 3 && selectedCourseKind.includes("ONLINE")) {
         return prevState - 2;
-      } else {
+      } 
+      else if(step === 4) {
+        setSelectedCourse([]);
+        return prevState -1
+      }
+      else {
         return prevState - 1;
       }
     });
