@@ -45,7 +45,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
         });
     });
     setCourseObject(tempCourseArray);
-  }, [props.currentCountryCode, props.currentLanguage, props.selectedCourse]);
+  }, [props]);
 
   return (
     <>

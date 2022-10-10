@@ -63,9 +63,7 @@ const OfferCreationForm = () => {
     console.log(newValue);
     console.log(`action: ${actionMeta.action}`);
     console.groupEnd();
-    setSelectedCourse((prevState) => {
-      return [...prevState, ...newValue];
-    });
+    setSelectedCourse([...newValue]);
   };
 
   const nextStep = () => {
