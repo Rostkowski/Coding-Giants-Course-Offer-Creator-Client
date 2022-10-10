@@ -1,4 +1,9 @@
+import translations from "./translations";
+
 const MailBase = () => {
+  const currentTranslation = translations.find(
+    (translation) => translation.language === "en-US"
+  );
   return (
     <div style={{ alignItems: "center", textAlign: "center" }}>
       <div style={{ textAlign: "center" }}>
@@ -8,7 +13,8 @@ const MailBase = () => {
           alt=""
         ></img>
       </div>
-      <p>Hello world</p>
+      <p>{currentTranslation?.greeting}</p>
+      <p>{currentTranslation?.afterGreetingSumUp}</p>
     </div>
   );
 };
