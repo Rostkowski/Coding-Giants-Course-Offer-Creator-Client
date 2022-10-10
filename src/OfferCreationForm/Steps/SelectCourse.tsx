@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
+import Select, { ActionMeta, OnChangeValue } from "react-select";
 
 interface ISelectCourse {
   currentCountryCode: string;
   currentLanguage: string;
   selectedCourseKind: string;
   selectedLocalisation: number;
-  onCourseSelection: (choice: { value: number; label: string }) => void;
+  onCourseSelection: (
+    newValue: OnChangeValue<{ value: number; label: string }, true>,
+    actionMeta: ActionMeta<{ value: number; label: string }>
+  ) => void;
 }
 
 const SelectCourse: React.FC<ISelectCourse> = (props) => {
@@ -55,7 +58,11 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
   ]);
   return (
     <div>
-      <Select options={listOfCourses} onChange={props.onCourseSelection} />
+      <Select
+        isMulti
+        options={listOfCourses}
+        onChange={props.onCourseSelection}
+      />
     </div>
   );
 };

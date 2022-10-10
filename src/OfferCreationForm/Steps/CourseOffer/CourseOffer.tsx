@@ -6,7 +6,7 @@ import MailBase from "./MailBase";
 interface ICourseOffer {
   currentLanguage: string;
   currentCountryCode: string;
-  selectedCourse: number;
+  selectedCourse: { value: number; label: string }[];
   mainContactDetails: { mainPhone: string; mainEmail: string };
 }
 
@@ -17,22 +17,28 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
       console.log(editorRef.current.getContent());
     }
   };
-  const [courseObject, setCourseObject] = useState<any>({});
+  const [courseObject, setCourseObject] = useState<any[]>([]);
   useEffect(() => {
-    fetch(
-      `https://cors-anywhere-wotp.onrender.com/https://giganciprogramowaniaformularz.edu.pl/api/Course/courses/${props.selectedCourse}`,
-      {
-        method: "GET",
-        headers: {
-          currentCountry: props.currentCountryCode,
-          currentLanguage: props.currentLanguage,
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setCourseObject(data);
-      });
+    console.log(props.selectedCourse);
+    let tempCourseArray: any[] = [];
+    props.selectedCourse.forEach((course) => {
+      fetch(
+        `https://cors-anywhere-wotp.onrender.com/https://giganciprogramowaniaformularz.edu.pl/api/Course/courses/${course.value}`,
+        {
+          method: "GET",
+          headers: {
+            currentCountry: props.currentCountryCode,
+            currentLanguage: props.currentLanguage,
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          tempCourseArray.push(data);
+        });
+    });
+    setCourseObject(tempCourseArray);
+    console.log(tempCourseArray);
   }, [props.currentCountryCode, props.currentLanguage, props.selectedCourse]);
   return (
     <>

@@ -6,6 +6,7 @@ import SelectCourseKind from "./Steps/SelectCourseKind";
 import SelectLocalisationForStationaryCourse from "./Steps/SelectLocalisationForStationaryCourse";
 import SelectCourse from "./Steps/SelectCourse";
 import CourseOffer from "./Steps/CourseOffer/CourseOffer";
+import { ActionMeta, OnChangeValue } from "react-select";
 
 const OfferCreationForm = () => {
   const [step, setStep] = useState(0);
@@ -18,7 +19,9 @@ const OfferCreationForm = () => {
     email: "",
     phone: "",
   });
-  const [selectedCourse, setSelectedCourse] = useState(0);
+  const [selectedCourse, setSelectedCourse] = useState<
+    { value: number; label: string }[]
+  >([]);
   const [countryMainContactDetails, setCountryMainContactDetails] = useState<{
     onlineMainPhone: string;
     onlineMainEmail: string;
@@ -51,10 +54,17 @@ const OfferCreationForm = () => {
     setSelectedLocalisation(choice);
     nextStep();
   };
-
-  const courseSelectionHandler = (choice: { value: number; label: string }) => {
-    setSelectedCourse(choice.value);
-    nextStep();
+  const courseSelectionHandler = (
+    newValue: OnChangeValue<{ value: number; label: string }, true>,
+    actionMeta: ActionMeta<{ value: number; label: string }>
+  ) => {
+    console.group("Value Changed");
+    console.log(newValue);
+    console.log(`action: ${actionMeta.action}`);
+    console.groupEnd();
+    setSelectedCourse((prevState) => {
+      return [...prevState, ...newValue];
+    });
   };
 
   const nextStep = () => {
@@ -101,13 +111,18 @@ const OfferCreationForm = () => {
       break;
     case 3:
       currentStepComponent = (
-        <SelectCourse
-          currentCountryCode={currentCountryCode}
-          currentLanguage={currentLanguage}
-          selectedCourseKind={selectedCourseKind}
-          selectedLocalisation={selectedLocalisation.value}
-          onCourseSelection={courseSelectionHandler}
-        />
+        <div>
+          <SelectCourse
+            currentCountryCode={currentCountryCode}
+            currentLanguage={currentLanguage}
+            selectedCourseKind={selectedCourseKind}
+            selectedLocalisation={selectedLocalisation.value}
+            onCourseSelection={courseSelectionHandler}
+          />
+          <button type="button" onClick={nextStep}>
+            Generate Offer
+          </button>
+        </div>
       );
       break;
     case 4:
