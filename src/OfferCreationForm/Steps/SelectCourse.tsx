@@ -36,7 +36,9 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
               value: course.id,
               label: `[${collection.age}] ${course.name}`,
             });
+            return true;
           });
+          return true;
         });
         if (tempCourseArray.length > 0) {
           setListOfCourses(tempCourseArray);

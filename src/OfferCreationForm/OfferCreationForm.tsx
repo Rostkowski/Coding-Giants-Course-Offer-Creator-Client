@@ -5,6 +5,7 @@ import CountryObject from "../models/CountryObject";
 import SelectCourseKind from "./Steps/SelectCourseKind";
 import SelectLocalisationForStationaryCourse from "./Steps/SelectLocalisationForStationaryCourse";
 import SelectCourse from "./Steps/SelectCourse";
+import CourseOffer from "./Steps/CourseOffer/CourseOffer";
 
 const OfferCreationForm = () => {
   const [step, setStep] = useState(0);
@@ -39,6 +40,7 @@ const OfferCreationForm = () => {
 
   const courseSelectionHandler = (choice: { value: number; label: string }) => {
     setSelectedCourse(choice.value);
+    nextStep();
   };
 
   const nextStep = () => {
@@ -95,6 +97,7 @@ const OfferCreationForm = () => {
       );
       break;
     case 4:
+      currentStepComponent = <CourseOffer />;
       break;
     default:
       if (step > 0) {
