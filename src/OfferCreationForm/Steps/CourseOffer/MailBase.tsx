@@ -1,8 +1,13 @@
+import React from 'react';
 import translations from "./translations";
-
-const MailBase = () => {
+interface IMailBase {
+currentLanguage: string;
+currentCountryCode: string;
+mainContactDetails: { mainPhone: string; mainEmail: string };
+}
+const MailBase: React.FC<IMailBase> = (props) => {
   const currentTranslation = translations.find(
-    (translation) => translation.language === "en-US"
+    (translation) => translation.language === props.currentLanguage
   );
   return (
     <div style={{ alignItems: "center", textAlign: "center" }}>
@@ -15,6 +20,7 @@ const MailBase = () => {
       </div>
       <p>{currentTranslation?.greeting}</p>
       <p>{currentTranslation?.afterGreetingSumUp}</p>
+      <p>{props.mainContactDetails.mainEmail} | {props.mainContactDetails.mainPhone}</p>
     </div>
   );
 };

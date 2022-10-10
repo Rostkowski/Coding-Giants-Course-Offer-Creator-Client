@@ -13,12 +13,16 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
       countryLanguage: "pl-PL",
       countryCode: "PL",
       countryName: "Poland",
+      onlineMainPhone: "22 112 10 63",
+      onlineMainEmail: "sekretariat@giganciprogramowania.edu.pl"
     },
     {
       key: 1,
       countryLanguage: "en-US",
       countryCode: "US",
       countryName: "United States of America",
+      onlineMainPhone: "+1 929 299 0413",
+      onlineMainEmail: "hello@codinggiants.com"
     },
   ];
 

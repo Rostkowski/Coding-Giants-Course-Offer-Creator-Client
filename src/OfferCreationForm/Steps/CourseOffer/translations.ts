@@ -10,7 +10,7 @@ const translations = [
     language: "en-US",
     greeting: "Good morning!",
     afterGreetingSumUp:
-      "In regards to our conversation over the phone, below I'm sending you a course offer we talked about.",
+      "In regards to our conversation over the phone, below I'm sending you the course offer we talked about.",
     oneTimePaymentPrice: "The course price(if paying upfront) is ",
   },
 ];

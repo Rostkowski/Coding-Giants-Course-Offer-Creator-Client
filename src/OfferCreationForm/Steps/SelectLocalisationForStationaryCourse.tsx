@@ -18,6 +18,8 @@ const SelectLocalisationForStationaryCourse: React.FC<
     return {
       value: localisation.id,
       label: `${localisation.address.street} ${localisation.address.city}`,
+      email: localisation.email,
+      phone: localisation.phone,
     };
   });
 
@@ -34,7 +36,6 @@ const SelectLocalisationForStationaryCourse: React.FC<
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setCourseKindLocalisations([...data]);
       });
   }, [props.currentCountryCode, props.currentLanguage, props.selectedCourseKind]);

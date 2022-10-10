@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 interface ISelectCourseStep {
   currentLanguage: string;
-  currentCountrycode: string;
+  currentCountryCode: string;
   onCourseKindSelection: (event: any) => void;
 }
 
@@ -15,7 +15,7 @@ const SelectCourseKind: React.FC<ISelectCourseStep> = (props) => {
       {
         method: "GET",
         headers: {
-          currentCountry: props.currentCountrycode,
+          currentCountry: props.currentCountryCode,
           currentLanguage: props.currentLanguage,
         },
       }
@@ -24,7 +24,7 @@ const SelectCourseKind: React.FC<ISelectCourseStep> = (props) => {
       .then((data) => {
         setCourseKinds([...data.onlineKinds, ...data.stationaryKinds]);
       });
-  }, [props.currentCountrycode, props.currentLanguage]);
+  }, [props.currentCountryCode, props.currentLanguage]);
 
   return (
     <div>

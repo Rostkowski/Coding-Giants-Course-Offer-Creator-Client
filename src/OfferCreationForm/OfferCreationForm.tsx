@@ -15,12 +15,25 @@ const OfferCreationForm = () => {
   const [selectedLocalisation, setSelectedLocalisation] = useState({
     value: 0,
     label: "INITIAL_STATE",
+    email: "",
+    phone: "",
   });
   const [selectedCourse, setSelectedCourse] = useState(0);
+  const [countryMainContactDetails, setCountryMainContactDetails] = useState<{
+    onlineMainPhone: string;
+    onlineMainEmail: string;
+  }>({
+    onlineMainEmail: "sekretariat@giganciprogramowania.edu.pl",
+    onlineMainPhone: "123 123 123",
+  });
 
   const countrySelectionHandler = (countryObject: CountryObject) => {
     setCurrentLanguage(countryObject.countryLanguage);
     setCurrentCountryCode(countryObject.countryCode);
+    setCountryMainContactDetails({
+      onlineMainEmail: countryObject.onlineMainEmail,
+      onlineMainPhone: countryObject.onlineMainPhone,
+    });
     nextStep();
   };
 
@@ -32,8 +45,9 @@ const OfferCreationForm = () => {
   const courseLocalisationSelectionHandler = (choice: {
     value: number;
     label: string;
+    email: string;
+    phone: string;
   }) => {
-    console.log(choice);
     setSelectedLocalisation(choice);
     nextStep();
   };
@@ -65,7 +79,7 @@ const OfferCreationForm = () => {
     case 1:
       currentStepComponent = (
         <SelectCourseKind
-          currentCountrycode={currentCountryCode}
+          currentCountryCode={currentCountryCode}
           currentLanguage={currentLanguage}
           onCourseKindSelection={courseKindSelectionHandler}
         />
@@ -97,7 +111,23 @@ const OfferCreationForm = () => {
       );
       break;
     case 4:
-      currentStepComponent = <CourseOffer />;
+      currentStepComponent = (
+        <CourseOffer
+          currentLanguage={currentLanguage}
+          currentCountryCode={currentCountryCode}
+          selectedCourse={selectedCourse}
+          mainContactDetails={{
+            mainPhone:
+              selectedLocalisation.value !== 0
+                ? selectedLocalisation.phone
+                : countryMainContactDetails.onlineMainPhone,
+            mainEmail:
+              selectedLocalisation.value !== 0
+                ? selectedLocalisation.email
+                : countryMainContactDetails.onlineMainEmail,
+          }}
+        />
+      );
       break;
     default:
       if (step > 0) {
