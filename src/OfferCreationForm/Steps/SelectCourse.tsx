@@ -43,7 +43,7 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
         if (tempCourseArray.length > 0) {
           setListOfCourses(tempCourseArray);
         } else {
-          setListOfCourses([{ value: 0, label: "No courses available" }]);
+          setListOfCourses([{ value: -1, label: "No courses available" }]);
         }
       });
   }, [

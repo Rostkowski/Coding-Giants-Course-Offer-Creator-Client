@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import SelectCountry from "./Steps/SelectCountry";
-import CountryObject from "../models/CountryObject";
+import CountryObject from "../models/CountryObjectModel";
 import SelectCourseKind from "./Steps/SelectCourseKind";
 import SelectLocalisationForStationaryCourse from "./Steps/SelectLocalisationForStationaryCourse";
 import SelectCourse from "./Steps/SelectCourse";

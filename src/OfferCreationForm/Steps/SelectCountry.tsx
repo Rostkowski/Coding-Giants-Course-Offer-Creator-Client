@@ -1,5 +1,5 @@
 import React from "react";
-import CountryObject from "../../models/CountryObject";
+import CountryObject from "../../models/CountryObjectModel";
 
 interface ISelectCountry {
   onCountrySelection: (countryObject: CountryObject) => void;
