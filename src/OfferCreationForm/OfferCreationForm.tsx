@@ -59,10 +59,6 @@ const OfferCreationForm = () => {
     newValue: OnChangeValue<{ value: number; label: string }, true>,
     actionMeta: ActionMeta<{ value: number; label: string }>
   ) => {
-    console.group("Value Changed");
-    console.log(newValue);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
     setSelectedCourse([...newValue]);
   };
 
