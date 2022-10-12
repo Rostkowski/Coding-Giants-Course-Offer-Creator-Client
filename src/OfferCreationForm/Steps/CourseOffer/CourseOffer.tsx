@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import * as ReactDOMServer from "react-dom/server";
 import { Editor } from "@tinymce/tinymce-react";
-import MailBase from "./MailBase";
+import MailBase from "./Mail/MailBase";
 
 interface ICourseOffer {
   currentLanguage: string;
