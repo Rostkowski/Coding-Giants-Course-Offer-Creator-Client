@@ -17,10 +17,9 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
       console.log(editorRef.current.getContent());
     }
   };
-  const [courseObject, setCourseObject] = useState<any[]>([]);
+  const [selectedCoursesArray, setSelectedCoursesArray] = useState<any[]>([]);
 
   useEffect(() => {
-    let tempCourseArray: any[] = [];
     props.selectedCourse.forEach((course) => {
       fetch(
         `https://cors-anywhere-wotp.onrender.com/https://giganciprogramowaniaformularz.edu.pl/api/Course/courses/${course.value}`,
@@ -36,15 +35,16 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
         .then((data) => {
           if (
             !(
-              tempCourseArray.filter((element) => element.id === data.id)
+              selectedCoursesArray.filter((element) => element.id === data.id)
                 .length > 0
             )
           ) {
-            tempCourseArray.push(data);
+            setSelectedCoursesArray((prevState) => {
+              return [...prevState, data];
+            });
           }
         });
     });
-    setCourseObject(tempCourseArray);
   }, [props]);
 
   return (
@@ -57,6 +57,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
             currentCountryCode={props.currentCountryCode}
             currentLanguage={props.currentLanguage}
             mainContactDetails={props.mainContactDetails}
+            selectedCoursesArray={selectedCoursesArray}
           />
         )}
         init={{
