@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 import SelectCountry from "./Steps/SelectCountry";
-import CountryObject from "../models/CountryObject";
+import CountryObject from "../models/CountryObjectModel";
 import SelectCourseKind from "./Steps/SelectCourseKind";
 import SelectLocalisationForStationaryCourse from "./Steps/SelectLocalisationForStationaryCourse";
 import SelectCourse from "./Steps/SelectCourse";
 import CourseOffer from "./Steps/CourseOffer/CourseOffer";
+import { ActionMeta, OnChangeValue } from "react-select";
 
 const OfferCreationForm = () => {
   const [step, setStep] = useState(0);
@@ -18,7 +19,9 @@ const OfferCreationForm = () => {
     email: "",
     phone: "",
   });
-  const [selectedCourse, setSelectedCourse] = useState(0);
+  const [selectedCourse, setSelectedCourse] = useState<
+    { value: number; label: string }[]
+  >([]);
   const [countryMainContactDetails, setCountryMainContactDetails] = useState<{
     onlineMainPhone: string;
     onlineMainEmail: string;
@@ -52,9 +55,11 @@ const OfferCreationForm = () => {
     nextStep();
   };
 
-  const courseSelectionHandler = (choice: { value: number; label: string }) => {
-    setSelectedCourse(choice.value);
-    nextStep();
+  const courseSelectionHandler = (
+    newValue: OnChangeValue<{ value: number; label: string }, true>,
+    actionMeta: ActionMeta<{ value: number; label: string }>
+  ) => {
+    setSelectedCourse([...newValue]);
   };
 
   const nextStep = () => {
@@ -67,7 +72,12 @@ const OfferCreationForm = () => {
     setStep((prevState) => {
       if (step === 3 && selectedCourseKind.includes("ONLINE")) {
         return prevState - 2;
-      } else {
+      } 
+      else if(step === 4) {
+        setSelectedCourse([]);
+        return prevState -1
+      }
+      else {
         return prevState - 1;
       }
     });
@@ -101,13 +111,18 @@ const OfferCreationForm = () => {
       break;
     case 3:
       currentStepComponent = (
-        <SelectCourse
-          currentCountryCode={currentCountryCode}
-          currentLanguage={currentLanguage}
-          selectedCourseKind={selectedCourseKind}
-          selectedLocalisation={selectedLocalisation.value}
-          onCourseSelection={courseSelectionHandler}
-        />
+        <div>
+          <SelectCourse
+            currentCountryCode={currentCountryCode}
+            currentLanguage={currentLanguage}
+            selectedCourseKind={selectedCourseKind}
+            selectedLocalisation={selectedLocalisation.value}
+            onCourseSelection={courseSelectionHandler}
+          />
+          <button type="button" onClick={nextStep}>
+            Generate Offer
+          </button>
+        </div>
       );
       break;
     case 4:
