@@ -133,11 +133,11 @@ const OfferCreationForm = () => {
           selectedCourse={selectedCourse}
           mainContactDetails={{
             mainPhone:
-              selectedLocalisation.value !== 0
+              selectedLocalisation.value !== 0 && selectedCourseKind.includes("STATIONARY")
                 ? selectedLocalisation.phone
                 : countryMainContactDetails.onlineMainPhone,
             mainEmail:
-              selectedLocalisation.value !== 0
+              selectedLocalisation.value !== 0 && selectedCourseKind.includes("STATIONARY")
                 ? selectedLocalisation.email
                 : countryMainContactDetails.onlineMainEmail,
           }}
