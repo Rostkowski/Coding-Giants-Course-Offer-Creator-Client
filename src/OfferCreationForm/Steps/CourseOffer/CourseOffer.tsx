@@ -20,6 +20,8 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
     }
   };
   const [selectedCoursesArray, setSelectedCoursesArray] = useState<any[]>([]);
+  const [timetableData, setTimetableData] = useState<any[]>([]);
+  const isStationary = props.selectedCourseKind.includes("STATIONARY");
 
   useEffect(() => {
     props.selectedCourse.forEach((course) => {
@@ -46,6 +48,26 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
             });
           }
         });
+      fetch(
+        `https://cors-anywhere-wotp.onrender.com/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
+          isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
+        }/${props.selectedCourseKind}/${course.value}/${
+          isStationary ? props.selectedLocalisation.toString() : "00000"
+        }/0`,
+        {
+          method: "GET",
+          headers: {
+            currentCountry: props.currentCountryCode,
+            currentLanguage: props.currentLanguage,
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setTimetableData((prevState) => {
+            return [...prevState, data];
+          });
+        });
     });
   }, [props]);
 
@@ -60,6 +82,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
             currentLanguage={props.currentLanguage}
             mainContactDetails={props.mainContactDetails}
             selectedCoursesArray={selectedCoursesArray}
+            selectedCoursesTimetableArray={timetableData}
             selectedCourseKind={props.selectedCourseKind}
             selectedLocalisation={props.selectedLocalisation}
           />

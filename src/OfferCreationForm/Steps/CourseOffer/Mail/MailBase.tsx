@@ -9,6 +9,7 @@ interface IMailBase {
   selectedCoursesArray: any[];
   selectedCourseKind: string;
   selectedLocalisation: number;
+  selectedCoursesTimetableArray: any[];
 }
 const MailBase: React.FC<IMailBase> = (props) => {
   const currentTranslation = translations.find(
@@ -57,7 +58,6 @@ const MailBase: React.FC<IMailBase> = (props) => {
           coursePlan={courseObject.plan}
           selectedCourseKind={props.selectedCourseKind}
           selectedLocalisation={props.selectedLocalisation}
-
         />
       ))}
       <p>
