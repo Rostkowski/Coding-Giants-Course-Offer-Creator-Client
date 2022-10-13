@@ -72,12 +72,10 @@ const OfferCreationForm = () => {
     setStep((prevState) => {
       if (step === 3 && selectedCourseKind.includes("ONLINE")) {
         return prevState - 2;
-      } 
-      else if(step === 4) {
+      } else if (step === 4) {
         setSelectedCourse([]);
-        return prevState -1
-      }
-      else {
+        return prevState - 1;
+      } else {
         return prevState - 1;
       }
     });
@@ -119,7 +117,11 @@ const OfferCreationForm = () => {
             selectedLocalisation={selectedLocalisation.value}
             onCourseSelection={courseSelectionHandler}
           />
-          <button type="button" onClick={nextStep}>
+          <button
+            type="button"
+            onClick={nextStep}
+            disabled={!(selectedCourse.length > 0)}
+          >
             Generate Offer
           </button>
         </div>
@@ -133,14 +135,18 @@ const OfferCreationForm = () => {
           selectedCourse={selectedCourse}
           mainContactDetails={{
             mainPhone:
-              selectedLocalisation.value !== 0 && selectedCourseKind.includes("STATIONARY")
+              selectedLocalisation.value !== 0 &&
+              selectedCourseKind.includes("STATIONARY")
                 ? selectedLocalisation.phone
                 : countryMainContactDetails.onlineMainPhone,
             mainEmail:
-              selectedLocalisation.value !== 0 && selectedCourseKind.includes("STATIONARY")
+              selectedLocalisation.value !== 0 &&
+              selectedCourseKind.includes("STATIONARY")
                 ? selectedLocalisation.email
                 : countryMainContactDetails.onlineMainEmail,
           }}
+          selectedCourseKind={selectedCourseKind}
+          selectedLocalisation={selectedLocalisation.value}
         />
       );
       break;

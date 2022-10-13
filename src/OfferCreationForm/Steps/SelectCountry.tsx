@@ -14,7 +14,7 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
       countryCode: "PL",
       countryName: "Poland",
       onlineMainPhone: "22 112 10 63",
-      onlineMainEmail: "sekretariat@giganciprogramowania.edu.pl"
+      onlineMainEmail: "sekretariat@giganciprogramowania.edu.pl",
     },
     {
       key: 1,
@@ -22,7 +22,7 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
       countryCode: "US",
       countryName: "United States of America",
       onlineMainPhone: "+1 929 299 0413",
-      onlineMainEmail: "hello@codinggiants.com"
+      onlineMainEmail: "hello@codinggiants.com",
     },
   ];
 

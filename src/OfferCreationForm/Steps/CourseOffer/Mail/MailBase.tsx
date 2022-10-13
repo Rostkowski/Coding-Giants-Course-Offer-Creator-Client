@@ -1,4 +1,5 @@
 import React from "react";
+import SelectCourseKind from "../../SelectCourseKind";
 import CourseDescription from "./CourseDetails";
 import translations from "./translations";
 interface IMailBase {
@@ -6,6 +7,8 @@ interface IMailBase {
   currentCountryCode: string;
   mainContactDetails: { mainPhone: string; mainEmail: string };
   selectedCoursesArray: any[];
+  selectedCourseKind: string;
+  selectedLocalisation: number;
 }
 const MailBase: React.FC<IMailBase> = (props) => {
   const currentTranslation = translations.find(
@@ -41,8 +44,10 @@ const MailBase: React.FC<IMailBase> = (props) => {
       <p>{currentTranslation?.afterGreetingSumUp}</p>
       {props.selectedCoursesArray.map((courseObject) => (
         <CourseDescription
-          key={courseObject.name}
+          key={courseObject.id}
+          courseId={courseObject.id}
           currentLanguage={props.currentLanguage}
+          currentCountry={props.currentCountryCode}
           courseName={courseObject.name}
           courseIntro={courseObject.intro}
           courseDescription={courseObject.description}
@@ -50,6 +55,9 @@ const MailBase: React.FC<IMailBase> = (props) => {
           otherPaymentAmount={courseObject.price.ammount}
           otherPaymentMethod={courseObject.price.method}
           coursePlan={courseObject.plan}
+          selectedCourseKind={props.selectedCourseKind}
+          selectedLocalisation={props.selectedLocalisation}
+
         />
       ))}
       <p>

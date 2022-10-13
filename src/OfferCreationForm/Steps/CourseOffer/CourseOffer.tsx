@@ -8,6 +8,8 @@ interface ICourseOffer {
   currentCountryCode: string;
   selectedCourse: { value: number; label: string }[];
   mainContactDetails: { mainPhone: string; mainEmail: string };
+  selectedCourseKind: string;
+  selectedLocalisation: number;
 }
 
 const CourseOffer: React.FC<ICourseOffer> = (props) => {
@@ -58,6 +60,8 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
             currentLanguage={props.currentLanguage}
             mainContactDetails={props.mainContactDetails}
             selectedCoursesArray={selectedCoursesArray}
+            selectedCourseKind={props.selectedCourseKind}
+            selectedLocalisation={props.selectedLocalisation}
           />
         )}
         init={{

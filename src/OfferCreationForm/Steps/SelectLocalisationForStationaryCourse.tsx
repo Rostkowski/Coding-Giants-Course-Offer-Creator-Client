@@ -38,7 +38,11 @@ const SelectLocalisationForStationaryCourse: React.FC<
       .then((data) => {
         setCourseKindLocalisations([...data]);
       });
-  }, [props.currentCountryCode, props.currentLanguage, props.selectedCourseKind]);
+  }, [
+    props.currentCountryCode,
+    props.currentLanguage,
+    props.selectedCourseKind,
+  ]);
   return (
     <div>
       <Select options={options} onChange={props.onLocalisationSelection} />
