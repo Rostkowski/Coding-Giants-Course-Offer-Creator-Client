@@ -25,6 +25,46 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
     return Number(currencyString.replace(/[^0-9\.-]+/g, ""));
   };
 
+  const courseTimetable = props.selectedCoursesTimetableArray.find(
+    (timetable) => timetable.courseId === props.courseId
+  );
+
+  const timetableTable = (
+    <div>
+      <table style={{ marginLeft: "auto", marginRight: "auto" }}>
+        <thead>
+          <tr>
+            <th>{currentTranslation?.timetableHour}</th>
+            <th>{currentTranslation?.timetableDay}</th>
+            <th>{currentTranslation?.timetableStartDate}</th>
+            <th>{currentTranslation?.timetableAvailableSpots}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {courseTimetable !== undefined &&
+            courseTimetable.localisation.dates
+              .filter(
+                (timetable: any) => timetable.availablePlacesNo !== undefined
+              )
+              .map((timetable: any) => (
+                <tr key={timetable.timetableId}>
+                  {!timetable.title.includes(" ") ? (
+                    <td key={timetable.description}>{timetable.description}</td>
+                  ) : (
+                    <td key={timetable.title}>{timetable.title.replace(timetable.title.split(" ")[0], "")}</td>
+                  )}
+                  {!timetable.title.includes(" ") ? <td key={timetable.title}>{timetable.title}</td> : <td key={timetable.title.split(" ")[0]}>{timetable.title.split(" ")[0]}</td> }
+                  <td key={timetable.startDate}>{timetable.startDate}</td>
+                  <td key={timetable.availablePlacesNo}>
+                    {timetable.availablePlacesNo}
+                  </td>
+                </tr>
+              ))}
+        </tbody>
+      </table>
+    </div>
+  );
+
   return (
     <div>
       <h4>
@@ -61,7 +101,10 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
         <b>{currentTranslation?.lessonPlan}</b>
       </p>
       {props.coursePlan.map((lesson) => (
-        <div style={{ alignItems: "left", textAlign: "left" }}>
+        <div
+          key={lesson.lessonNumber}
+          style={{ alignItems: "left", textAlign: "left" }}
+        >
           <p>
             <b>{lesson.title}</b>
           </p>
@@ -73,18 +116,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
       <p>
         <b>{currentTranslation?.availableDates}</b>
       </p>
-      <div>
-        <table style={{ marginLeft: "auto", marginRight: "auto" }}>
-          <thead>
-            <tr>
-              <th>{currentTranslation?.timetableHour}</th>
-              <th>{currentTranslation?.timetableDay}</th>
-              <th>{currentTranslation?.timetableStartDate}</th>
-              <th>{currentTranslation?.timetableAvailableSpots}</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
+      <div>{timetableTable}</div>
 
       <hr></hr>
     </div>

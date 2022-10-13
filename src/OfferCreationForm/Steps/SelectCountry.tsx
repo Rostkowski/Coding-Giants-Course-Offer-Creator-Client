@@ -24,6 +24,14 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
       onlineMainPhone: "+1 929 299 0413",
       onlineMainEmail: "hello@codinggiants.com",
     },
+    {
+      key: 2,
+      countryLanguage: "es-ES",
+      countryCode: "ES",
+      countryName: "Spain",
+      onlineMainPhone: "+1 123 123 123",
+      onlineMainEmail: "spain@codinggiants.es",
+    },
   ];
 
   const countrySelectionHandler = (event: any) => {
