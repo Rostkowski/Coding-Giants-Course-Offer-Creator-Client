@@ -58,6 +58,7 @@ const MailBase: React.FC<IMailBase> = (props) => {
           coursePlan={courseObject.plan}
           selectedCourseKind={props.selectedCourseKind}
           selectedLocalisation={props.selectedLocalisation}
+          selectedCoursesTimetableArray={props.selectedCoursesTimetableArray}
         />
       ))}
       <p>

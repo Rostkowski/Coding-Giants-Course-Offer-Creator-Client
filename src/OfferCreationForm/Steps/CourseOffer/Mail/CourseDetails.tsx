@@ -14,6 +14,7 @@ interface ICourseDetails {
   coursePlan: any[];
   selectedCourseKind: string;
   selectedLocalisation: number;
+  selectedCoursesTimetableArray: any[];
 }
 
 const CourseDetails: React.FC<ICourseDetails> = (props) => {
