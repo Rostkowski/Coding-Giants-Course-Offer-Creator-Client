@@ -57,6 +57,7 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
   return (
     <div>
       <Select
+        placeholder="Select course"
         isMulti
         options={listOfCourses}
         onChange={props.onCourseSelection}

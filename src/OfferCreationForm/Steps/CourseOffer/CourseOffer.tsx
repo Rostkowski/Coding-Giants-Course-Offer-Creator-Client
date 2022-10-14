@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import * as ReactDOMServer from "react-dom/server";
 import { Editor } from "@tinymce/tinymce-react";
 import MailBase from "./Mail/MailBase";
+import Button from "react-bootstrap/Button";
 
 interface ICourseOffer {
   currentLanguage: string;
@@ -97,9 +98,9 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
-      <button type="button" onClick={log}>
+      <Button className="w-100 mt-1" variant="primary" type="button" onClick={log}>
         Log editor content
-      </button>
+      </Button>
     </>
   );
 };
