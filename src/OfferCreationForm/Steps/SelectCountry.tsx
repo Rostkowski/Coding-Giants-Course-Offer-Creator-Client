@@ -1,7 +1,7 @@
 import React from "react";
 import CountryObject from "../../models/CountryObjectModel";
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import Form from 'react-bootstrap/Form';
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
 
 interface ISelectCountry {
   onCountrySelection: (countryObject: CountryObject) => void;
@@ -49,14 +49,14 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
   return (
     <div>
       <FloatingLabel controlId="countrySelect" label="Select country">
-      <Form.Select onChange={countrySelectionHandler} value="---">
-        <option value="---">---</option>
-        {countryList.map((country) => (
-          <option key={country.key} value={country.countryCode}>
-            {country.countryName}
-          </option>
-        ))}
-      </Form.Select>
+        <Form.Select onChange={countrySelectionHandler} value="---">
+          <option value="---">---</option>
+          {countryList.map((country) => (
+            <option key={country.key} value={country.countryCode}>
+              {country.countryName}
+            </option>
+          ))}
+        </Form.Select>
       </FloatingLabel>
     </div>
   );
