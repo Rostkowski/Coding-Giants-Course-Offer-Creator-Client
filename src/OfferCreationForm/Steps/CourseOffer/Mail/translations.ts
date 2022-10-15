@@ -11,6 +11,8 @@ const translations = [
     timetableDay: "Dzień tygodnia",
     timetableStartDate: "Data startu",
     timetableAvailableSpots: "Wolne miejsca",
+    regards: "Pozdrawiamy, ",
+    contactCenterFooterName: ""
   },
   {
     language: "en-US",

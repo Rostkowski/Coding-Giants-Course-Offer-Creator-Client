@@ -45,8 +45,6 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
         });
         if (tempCourseArray.length > 0) {
           setListOfCourses(tempCourseArray);
-        } else {
-          setListOfCourses([{ value: -1, label: "No courses available" }]);
         }
       });
   }, [
@@ -59,6 +57,7 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
   return (
     <div>
       <Select
+        placeholder="Select course"
         isMulti
         options={listOfCourses}
         onChange={props.onCourseSelection}

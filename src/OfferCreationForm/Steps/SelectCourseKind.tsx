@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
 
 interface ISelectCourseStep {
   currentLanguage: string;
@@ -28,14 +30,16 @@ const SelectCourseKind: React.FC<ISelectCourseStep> = (props) => {
 
   return (
     <div>
-      <select onChange={props.onCourseKindSelection}>
+      <FloatingLabel controlId="courseKindSelect" label="Select course kind">
+      <Form.Select onChange={props.onCourseKindSelection}>
         <option value="---">---</option>
         {courseKinds.map((course) => (
           <option key={course.kind} value={course.kind}>
             {course.kindName}
           </option>
         ))}
-      </select>
+      </Form.Select>
+      </FloatingLabel>
     </div>
   );
 };

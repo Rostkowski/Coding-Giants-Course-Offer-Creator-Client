@@ -43,9 +43,14 @@ const SelectLocalisationForStationaryCourse: React.FC<
     props.currentLanguage,
     props.selectedCourseKind,
   ]);
+
   return (
     <div>
-      <Select options={options} onChange={props.onLocalisationSelection} />
+      <Select
+        placeholder="Select localisation"
+        options={options}
+        onChange={props.onLocalisationSelection}
+      />
     </div>
   );
 };

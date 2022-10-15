@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 import SelectCountry from "./Steps/SelectCountry";
 import CountryObject from "../models/CountryObjectModel";
@@ -110,20 +111,24 @@ const OfferCreationForm = () => {
     case 3:
       currentStepComponent = (
         <div>
-          <SelectCourse
-            currentCountryCode={currentCountryCode}
-            currentLanguage={currentLanguage}
-            selectedCourseKind={selectedCourseKind}
-            selectedLocalisation={selectedLocalisation.value}
-            onCourseSelection={courseSelectionHandler}
-          />
-          <button
+          <div>
+            <SelectCourse
+              currentCountryCode={currentCountryCode}
+              currentLanguage={currentLanguage}
+              selectedCourseKind={selectedCourseKind}
+              selectedLocalisation={selectedLocalisation.value}
+              onCourseSelection={courseSelectionHandler}
+            />
+          </div>
+          <Button
+            variant="primary"
+            className="mt-1 w-100"
             type="button"
             onClick={nextStep}
             disabled={!(selectedCourse.length > 0)}
           >
             Generate Offer
-          </button>
+          </Button>
         </div>
       );
       break;
@@ -164,13 +169,25 @@ const OfferCreationForm = () => {
   }
 
   return (
-    <div className="form-container">
-      <form>{currentStepComponent}</form>
-      {step > 0 && (
-        <button type="button" onClick={previousStep}>
-          back
-        </button>
-      )}
+    <div
+      className="d-flex justify-content-center flex-column mx-auto container"
+      style={{ minWidth: "50vw", maxWidth: "50vw" }}
+    >
+      <div className="app-container">
+        <div className="mx-auto">
+        {currentStepComponent}
+        {step > 0 && (
+          <Button
+            variant="primary"
+            className="mt-1 w-100"
+            type="button"
+            onClick={previousStep}
+          >
+            Back
+          </Button>
+        )}
+        </div>
+      </div>
     </div>
   );
 };
