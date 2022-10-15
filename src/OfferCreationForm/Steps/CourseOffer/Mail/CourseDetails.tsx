@@ -29,7 +29,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
     (timetable) => timetable.courseId === props.courseId
   );
 
-  const timetableTable = (
+  const timatableDates = (
     <div>
       <table style={{ marginLeft: "auto", marginRight: "auto" }}>
         <thead>
@@ -51,9 +51,20 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
                   {!timetable.title.includes(" ") ? (
                     <td key={timetable.description}>{timetable.description}</td>
                   ) : (
-                    <td key={timetable.title}>{timetable.title.replace(timetable.title.split(" ")[0], "")}</td>
+                    <td key={timetable.title}>
+                      {timetable.title.replace(
+                        timetable.title.split(" ")[0],
+                        ""
+                      )}
+                    </td>
                   )}
-                  {!timetable.title.includes(" ") ? <td key={timetable.title}>{timetable.title}</td> : <td key={timetable.title.split(" ")[0]}>{timetable.title.split(" ")[0]}</td> }
+                  {!timetable.title.includes(" ") ? (
+                    <td key={timetable.title}>{timetable.title}</td>
+                  ) : (
+                    <td key={timetable.title.split(" ")[0]}>
+                      {timetable.title.split(" ")[0]}
+                    </td>
+                  )}
                   <td key={timetable.startDate}>{timetable.startDate}</td>
                   <td key={timetable.availablePlacesNo}>
                     {timetable.availablePlacesNo}
@@ -113,10 +124,24 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
           </ul>
         </div>
       ))}
-      <p>
-        <b>{currentTranslation?.availableDates}</b>
-      </p>
-      <div>{timetableTable}</div>
+
+      <div>
+        {courseTimetable !== undefined &&
+        courseTimetable.localisation.dates.filter(
+          (timetable: any) => timetable.availablePlacesNo !== undefined
+        ).length > 0 ? (
+          <div>
+            <p>
+              <b>{currentTranslation?.availableDates}</b>
+            </p>
+            {timatableDates}
+          </div>
+        ) : (
+          <p>
+            <b>{currentTranslation?.noAvailableDates}</b>
+          </p>
+        )}
+      </div>
 
       <hr></hr>
     </div>

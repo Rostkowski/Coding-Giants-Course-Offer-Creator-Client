@@ -1,5 +1,4 @@
 import React from "react";
-import SelectCourseKind from "../../SelectCourseKind";
 import CourseDescription from "./CourseDetails";
 import translations from "./Translations";
 interface IMailBase {
