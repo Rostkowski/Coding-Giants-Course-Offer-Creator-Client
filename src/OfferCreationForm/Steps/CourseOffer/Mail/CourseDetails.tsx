@@ -34,10 +34,10 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
       <table style={{ marginLeft: "auto", marginRight: "auto" }}>
         <thead>
           <tr>
-            <th>{currentTranslation?.timetableHour}</th>
-            <th>{currentTranslation?.timetableDay}</th>
-            <th>{currentTranslation?.timetableStartDate}</th>
-            <th>{currentTranslation?.timetableAvailableSpots}</th>
+            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableHour}</th>
+            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableDay}</th>
+            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableStartDate}</th>
+            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableAvailableSpots}</th>
           </tr>
         </thead>
         <tbody>

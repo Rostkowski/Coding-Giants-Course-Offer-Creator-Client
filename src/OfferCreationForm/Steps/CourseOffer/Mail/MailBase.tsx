@@ -60,9 +60,14 @@ const MailBase: React.FC<IMailBase> = (props) => {
           selectedCoursesTimetableArray={props.selectedCoursesTimetableArray}
         />
       ))}
+      <p>{currentTranslation?.regards}</p>
       <p>
-        {`${props.mainContactDetails.mainEmail} ${props.mainContactDetails.mainPhone}`}
+        <i>{currentTranslation?.customerServiceTeam}</i>
       </p>
+      <p>&#128231; <a href={props.mainContactDetails.mainEmail}>
+        {props.mainContactDetails.mainEmail}
+      </a></p>
+      <p>&#128241; {props.mainContactDetails.mainPhone}</p>
     </div>
   );
 };

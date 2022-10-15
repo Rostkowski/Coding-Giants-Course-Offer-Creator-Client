@@ -13,6 +13,7 @@ const translations = [
     timetableStartDate: "Data startu",
     timetableAvailableSpots: "Wolne miejsca",
     regards: "Pozdrawiamy, ",
+    customerServiceTeam: "Zespół ds. obsługi klienta"
   },
   {
     language: "en-US",
@@ -28,6 +29,8 @@ const translations = [
     timetableDay: "Day of the week",
     timetableStartDate: "Start date",
     timetableAvailableSpots: "Available spots",
+    regards: "Kind regards, ",
+    customerServiceTeam: "Contact Center Team"
   },
 ];
 
