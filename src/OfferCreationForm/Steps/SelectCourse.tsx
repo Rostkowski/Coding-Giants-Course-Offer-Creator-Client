@@ -44,7 +44,10 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
           collection.courses.map((course: any) => {
             tempCourseArray.push({
               value: course.id,
-              label: `[${collection.age}] ${course.name}`,
+              label:
+                course.registrationType === "Interested"
+                  ? `[Interested Only] [${collection.age}] ${course.name}`
+                  : `[${collection.age}] ${course.name}`,
             });
             return true;
           });
