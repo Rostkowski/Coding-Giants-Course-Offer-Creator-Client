@@ -48,12 +48,12 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
             });
             return true;
           });
-          setCoursesPresence(true);
           return true;
         });
         if (tempCourseArray.length > 0) {
           setListOfCourses(tempCourseArray);
         }
+        setCoursesPresence(true);
       });
   }, [
     isStationary,
