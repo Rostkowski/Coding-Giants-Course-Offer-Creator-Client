@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import translations from "./translations";
+import translations from "./Translations";
 
 interface ICourseDetails {
   courseId: number;

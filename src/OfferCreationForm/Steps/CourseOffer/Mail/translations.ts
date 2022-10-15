@@ -6,13 +6,13 @@ const translations = [
     Price: "Cena: ",
     OR: "lub",
     lessonPlan: "Plan zajęć: ",
+    noAvailableDates: "Brak dostępnych terminów",
     availableDates: "Dostępne terminy: ",
     timetableHour: "Godzina",
     timetableDay: "Dzień tygodnia",
     timetableStartDate: "Data startu",
     timetableAvailableSpots: "Wolne miejsca",
     regards: "Pozdrawiamy, ",
-    contactCenterFooterName: ""
   },
   {
     language: "en-US",
@@ -22,6 +22,7 @@ const translations = [
     Price: "Price: ",
     OR: "or",
     lessonPlan: "Course plan: ",
+    noAvailableDates: "No available dates",
     availableDates: "Available dates: ",
     timetableHour: "Hours",
     timetableDay: "Day of the week",

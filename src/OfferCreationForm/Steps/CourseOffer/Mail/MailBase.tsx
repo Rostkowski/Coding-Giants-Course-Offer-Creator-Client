@@ -1,7 +1,7 @@
 import React from "react";
 import SelectCourseKind from "../../SelectCourseKind";
 import CourseDescription from "./CourseDetails";
-import translations from "./translations";
+import translations from "./Translations";
 interface IMailBase {
   currentLanguage: string;
   currentCountryCode: string;
