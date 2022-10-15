@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 import SelectCountry from "./Steps/SelectCountry";
 import CountryObject from "../models/CountryObjectModel";
@@ -70,14 +71,14 @@ const OfferCreationForm = () => {
 
   const previousStep = () => {
     setStep((prevState) => {
-      if (step === 3 && selectedCourseKind.includes("ONLINE")) {
-        return prevState - 2;
-      } 
-      else if(step === 4) {
+      if (step < 4) {
         setSelectedCourse([]);
-        return prevState -1
-      }
-      else {
+        if (step === 3 && selectedCourseKind.includes("ONLINE")) {
+          return prevState - 2;
+        } else {
+          return prevState - 1;
+        }
+      } else {
         return prevState - 1;
       }
     });
@@ -112,16 +113,17 @@ const OfferCreationForm = () => {
     case 3:
       currentStepComponent = (
         <div>
-          <SelectCourse
-            currentCountryCode={currentCountryCode}
-            currentLanguage={currentLanguage}
-            selectedCourseKind={selectedCourseKind}
-            selectedLocalisation={selectedLocalisation.value}
-            onCourseSelection={courseSelectionHandler}
-          />
-          <button type="button" onClick={nextStep}>
-            Generate Offer
-          </button>
+          <div>
+            <SelectCourse
+              currentCountryCode={currentCountryCode}
+              currentLanguage={currentLanguage}
+              selectedCourseKind={selectedCourseKind}
+              selectedLocalisation={selectedLocalisation.value}
+              onCourseSelection={courseSelectionHandler}
+              nextStep={nextStep}
+              selectedCourse={selectedCourse}
+            />
+          </div>
         </div>
       );
       break;
@@ -133,14 +135,18 @@ const OfferCreationForm = () => {
           selectedCourse={selectedCourse}
           mainContactDetails={{
             mainPhone:
-              selectedLocalisation.value !== 0
+              selectedLocalisation.value !== 0 &&
+              selectedCourseKind.includes("STATIONARY")
                 ? selectedLocalisation.phone
                 : countryMainContactDetails.onlineMainPhone,
             mainEmail:
-              selectedLocalisation.value !== 0
+              selectedLocalisation.value !== 0 &&
+              selectedCourseKind.includes("STATIONARY")
                 ? selectedLocalisation.email
                 : countryMainContactDetails.onlineMainEmail,
           }}
+          selectedCourseKind={selectedCourseKind}
+          selectedLocalisation={selectedLocalisation.value}
         />
       );
       break;
@@ -158,13 +164,22 @@ const OfferCreationForm = () => {
   }
 
   return (
-    <div className="form-container">
-      <form>{currentStepComponent}</form>
-      {step > 0 && (
-        <button type="button" onClick={previousStep}>
-          back
-        </button>
-      )}
+    <div className="d-flex justify-content-center flex-column mx-auto container">
+      <div className="app-container">
+        <div className="mx-auto">
+          {currentStepComponent}
+          {step > 0 && (
+            <Button
+              variant="primary"
+              className="mt-1 w-100"
+              type="button"
+              onClick={previousStep}
+            >
+              Back
+            </Button>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

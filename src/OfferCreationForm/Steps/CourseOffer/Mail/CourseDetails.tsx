@@ -1,25 +1,80 @@
-import React from "react";
-import translations from "./translations";
+import React, { useEffect, useState } from "react";
+import translations from "./Translations";
 
 interface ICourseDetails {
+  courseId: number;
   courseName: string;
   courseDescription: string;
   courseIntro: string;
   currentLanguage: string;
+  currentCountry: string;
   amountOneTimePayment: string;
   otherPaymentAmount: string;
   otherPaymentMethod: string;
   coursePlan: any[];
+  selectedCourseKind: string;
+  selectedLocalisation: number;
+  selectedCoursesTimetableArray: any[];
 }
 
 const CourseDetails: React.FC<ICourseDetails> = (props) => {
   const currentTranslation = translations.find(
     (translation) => translation.language === props.currentLanguage
   );
-
   const convertCurrencyStringToDouble = (currencyString: string) => {
     return Number(currencyString.replace(/[^0-9\.-]+/g, ""));
   };
+
+  const courseTimetable = props.selectedCoursesTimetableArray.find(
+    (timetable) => timetable.courseId === props.courseId
+  );
+
+  const timatableDates = (
+    <div>
+      <table style={{ marginLeft: "auto", marginRight: "auto" }}>
+        <thead>
+          <tr>
+            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableHour}</th>
+            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableDay}</th>
+            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableStartDate}</th>
+            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableAvailableSpots}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {courseTimetable !== undefined &&
+            courseTimetable.localisation.dates
+              .filter(
+                (timetable: any) => timetable.availablePlacesNo !== undefined
+              )
+              .map((timetable: any) => (
+                <tr key={timetable.timetableId}>
+                  {!timetable.title.includes(" ") ? (
+                    <td key={timetable.description}>{timetable.description}</td>
+                  ) : (
+                    <td key={timetable.title}>
+                      {timetable.title.replace(
+                        timetable.title.split(" ")[0],
+                        ""
+                      )}
+                    </td>
+                  )}
+                  {!timetable.title.includes(" ") ? (
+                    <td key={timetable.title}>{timetable.title}</td>
+                  ) : (
+                    <td key={timetable.title.split(" ")[0]}>
+                      {timetable.title.split(" ")[0]}
+                    </td>
+                  )}
+                  <td key={timetable.startDate}>{timetable.startDate}</td>
+                  <td key={timetable.availablePlacesNo}>
+                    {timetable.availablePlacesNo}
+                  </td>
+                </tr>
+              ))}
+        </tbody>
+      </table>
+    </div>
+  );
 
   return (
     <div>
@@ -53,9 +108,14 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
             <b>{props.otherPaymentAmount}</b>
           </p>
         )}
-      <p><b>{currentTranslation?.lessonPlan}</b></p>
+      <p>
+        <b>{currentTranslation?.lessonPlan}</b>
+      </p>
       {props.coursePlan.map((lesson) => (
-        <div style={{ alignItems: "left", textAlign: "left" }}>
+        <div
+          key={lesson.lessonNumber}
+          style={{ alignItems: "left", textAlign: "left" }}
+        >
           <p>
             <b>{lesson.title}</b>
           </p>
@@ -64,7 +124,25 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
           </ul>
         </div>
       ))}
-      <p><b>{currentTranslation?.availableDates}</b></p>
+
+      <div>
+        {courseTimetable !== undefined &&
+        courseTimetable.localisation.dates.filter(
+          (timetable: any) => timetable.availablePlacesNo !== undefined
+        ).length > 0 ? (
+          <div>
+            <p>
+              <b>{currentTranslation?.availableDates}</b>
+            </p>
+            {timatableDates}
+          </div>
+        ) : (
+          <p>
+            <b>{currentTranslation?.noAvailableDates}</b>
+          </p>
+        )}
+      </div>
+
       <hr></hr>
     </div>
   );

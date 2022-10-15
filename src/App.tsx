@@ -1,11 +1,10 @@
-import React from 'react';
-import OfferCreationForm from './OfferCreationForm/OfferCreationForm';
+import React from "react";
+import OfferCreationForm from "./OfferCreationForm/OfferCreationForm";
 function App() {
   return (
-    <div>
+    <div className="d-flex">
       <OfferCreationForm />
     </div>
-    
   );
 }
 
