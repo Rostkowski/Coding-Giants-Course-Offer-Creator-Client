@@ -71,7 +71,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
           });
         });
     });
-  }, [props]);
+  }, [props, isStationary, selectedCoursesArray]);
 
   return (
     <>
