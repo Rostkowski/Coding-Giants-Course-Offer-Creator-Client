@@ -46,7 +46,6 @@ const SelectLocalisationForStationaryCourse: React.FC<
 
   return (
     <div>
-      <label>Select localisation:</label>
       <Select
         placeholder="Select localisation"
         options={options}
