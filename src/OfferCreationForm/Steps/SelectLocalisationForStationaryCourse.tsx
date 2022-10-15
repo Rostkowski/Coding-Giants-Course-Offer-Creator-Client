@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
+import Loader from "../../Shared/Loader";
 
 interface ISelectLocalisationForStationaryCourse {
   currentLanguage: string;
@@ -22,8 +23,10 @@ const SelectLocalisationForStationaryCourse: React.FC<
       phone: localisation.phone,
     };
   });
+  const [areLocalisationsLoaded, setLocalisationsPresence] = useState(false);
 
   useEffect(() => {
+    setLocalisationsPresence(false);
     fetch(
       `https://cors-anywhere-wotp.onrender.com/https://giganciprogramowaniaformularz.edu.pl/api/Localisation/localisationsByCourseKind/${props.selectedCourseKind}`,
       {
@@ -37,6 +40,7 @@ const SelectLocalisationForStationaryCourse: React.FC<
       .then((response) => response.json())
       .then((data) => {
         setCourseKindLocalisations([...data]);
+        setLocalisationsPresence(true);
       });
   }, [
     props.currentCountryCode,
@@ -46,11 +50,19 @@ const SelectLocalisationForStationaryCourse: React.FC<
 
   return (
     <div>
-      <Select
-        placeholder="Select localisation"
-        options={options}
-        onChange={props.onLocalisationSelection}
-      />
+      {areLocalisationsLoaded ? (
+        <div>
+          <Select
+            placeholder="Select localisation"
+            options={options}
+            onChange={props.onLocalisationSelection}
+          />
+        </div>
+      ) : (
+        <div className="d-flex justify-content-center mb-3">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

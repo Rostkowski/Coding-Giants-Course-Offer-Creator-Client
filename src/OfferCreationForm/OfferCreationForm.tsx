@@ -71,11 +71,13 @@ const OfferCreationForm = () => {
 
   const previousStep = () => {
     setStep((prevState) => {
-      if (step === 3 && selectedCourseKind.includes("ONLINE")) {
-        return prevState - 2;
-      } else if (step === 4) {
+      if (step < 4) {
         setSelectedCourse([]);
-        return prevState - 1;
+        if (step === 3 && selectedCourseKind.includes("ONLINE")) {
+          return prevState - 2;
+        } else {
+          return prevState - 1;
+        }
       } else {
         return prevState - 1;
       }
@@ -118,17 +120,10 @@ const OfferCreationForm = () => {
               selectedCourseKind={selectedCourseKind}
               selectedLocalisation={selectedLocalisation.value}
               onCourseSelection={courseSelectionHandler}
+              nextStep={nextStep}
+              selectedCourse={selectedCourse}
             />
           </div>
-          <Button
-            variant="primary"
-            className="mt-1 w-100"
-            type="button"
-            onClick={nextStep}
-            disabled={!(selectedCourse.length > 0)}
-          >
-            Generate Offer
-          </Button>
         </div>
       );
       break;
@@ -169,23 +164,20 @@ const OfferCreationForm = () => {
   }
 
   return (
-    <div
-      className="d-flex justify-content-center flex-column mx-auto container"
-      style={{ minWidth: "50vw", maxWidth: "50vw" }}
-    >
+    <div className="d-flex justify-content-center flex-column mx-auto container">
       <div className="app-container">
         <div className="mx-auto">
-        {currentStepComponent}
-        {step > 0 && (
-          <Button
-            variant="primary"
-            className="mt-1 w-100"
-            type="button"
-            onClick={previousStep}
-          >
-            Back
-          </Button>
-        )}
+          {currentStepComponent}
+          {step > 0 && (
+            <Button
+              variant="primary"
+              className="mt-1 w-100"
+              type="button"
+              onClick={previousStep}
+            >
+              Back
+            </Button>
+          )}
         </div>
       </div>
     </div>
