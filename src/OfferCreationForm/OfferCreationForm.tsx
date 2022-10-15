@@ -175,17 +175,17 @@ const OfferCreationForm = () => {
     >
       <div className="app-container">
         <div className="mx-auto">
-        {currentStepComponent}
-        {step > 0 && (
-          <Button
-            variant="primary"
-            className="mt-1 w-100"
-            type="button"
-            onClick={previousStep}
-          >
-            Back
-          </Button>
-        )}
+          {currentStepComponent}
+          {step > 0 && (
+            <Button
+              variant="primary"
+              className="mt-1 w-100"
+              type="button"
+              onClick={previousStep}
+            >
+              Back
+            </Button>
+          )}
         </div>
       </div>
     </div>
