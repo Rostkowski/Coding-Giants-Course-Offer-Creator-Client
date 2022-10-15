@@ -18,7 +18,7 @@ const translations = [
     language: "en-US",
     greeting: "Hello!",
     afterGreetingSumUp:
-      "In regards to our conversation over the phone, below, I send you the offer we talked about.",
+      "Regarding our conversation over the phone below you can find details of the offer we talked about.",
     Price: "Price: ",
     OR: "or",
     lessonPlan: "Course plan: ",

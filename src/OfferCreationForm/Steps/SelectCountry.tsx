@@ -23,7 +23,7 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
       countryLanguage: "en-US",
       countryCode: "US",
       countryName: "United States of America",
-      onlineMainPhone: "+1 929 299 0413",
+      onlineMainPhone: "US: +1 929 299 0413 UK: +44 20 8103 3864",
       onlineMainEmail: "hello@codinggiants.com",
     },
     {
