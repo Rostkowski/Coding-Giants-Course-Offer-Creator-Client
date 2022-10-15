@@ -49,6 +49,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
             });
           }
         });
+        
       fetch(
         `https://cors-anywhere-wotp.onrender.com/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
           isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
@@ -98,7 +99,12 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
-      <Button className="w-100 mt-1" variant="primary" type="button" onClick={log}>
+      <Button
+        className="w-100 mt-1"
+        variant="primary"
+        type="button"
+        onClick={log}
+      >
         Log editor content
       </Button>
     </>
