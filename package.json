@@ -1,5 +1,6 @@
 {
   "name": "offer-creator-client",
+  "homepage": "https://offer-creator.rostkowski.uk/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
