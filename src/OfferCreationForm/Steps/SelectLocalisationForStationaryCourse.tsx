@@ -28,7 +28,7 @@ const SelectLocalisationForStationaryCourse: React.FC<
   useEffect(() => {
     setLocalisationsPresence(false);
     fetch(
-      `http://srv09.mikr.us:20293/https://giganciprogramowaniaformularz.edu.pl/api/Localisation/localisationsByCourseKind/${props.selectedCourseKind}`,
+      `https://cors-proxy.rostkowski.uk:20293/https://giganciprogramowaniaformularz.edu.pl/api/Localisation/localisationsByCourseKind/${props.selectedCourseKind}`,
       {
         method: "GET",
         headers: {
