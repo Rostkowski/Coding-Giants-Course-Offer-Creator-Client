@@ -27,7 +27,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
   useEffect(() => {
     props.selectedCourse.forEach((course) => {
       fetch(
-        `https://cors-anywhere-wotp.onrender.com/https://giganciprogramowaniaformularz.edu.pl/api/Course/courses/${course.value}`,
+        `http://srv09.mikr.us:20293/https://giganciprogramowaniaformularz.edu.pl/api/Course/courses/${course.value}`,
         {
           method: "GET",
           headers: {
@@ -51,7 +51,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
         });
         
       fetch(
-        `https://cors-anywhere-wotp.onrender.com/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
+        `http://srv09.mikr.us:20293/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
           isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
         }/${props.selectedCourseKind}/${course.value}/${
           isStationary ? props.selectedLocalisation.toString() : "00000"

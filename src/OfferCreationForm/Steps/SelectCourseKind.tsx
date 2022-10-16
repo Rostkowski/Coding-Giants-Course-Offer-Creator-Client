@@ -16,7 +16,7 @@ const SelectCourseKind: React.FC<ISelectCourseStep> = (props) => {
   useEffect(() => {
     setCourseKindsPresence(false);
     fetch(
-      "https://cors-anywhere-wotp.onrender.com/https://giganciprogramowaniaformularz.edu.pl/api/Course/courseKindsProgrammingType",
+      "http://srv09.mikr.us:20293/https://giganciprogramowaniaformularz.edu.pl/api/Course/courseKindsProgrammingType",
       {
         method: "GET",
         headers: {
