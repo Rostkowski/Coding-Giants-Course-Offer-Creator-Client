@@ -53,7 +53,7 @@ const SelectLocalisationForStationaryCourse: React.FC<
       {areLocalisationsLoaded ? (
         <div>
           <Select
-            placeholder="Select localisation"
+            placeholder="Select location"
             options={options}
             onChange={props.onLocalisationSelection}
           />
