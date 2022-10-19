@@ -1,5 +1,5 @@
 import React from "react";
-import CourseDescription from "./CourseDetails";
+import CourseDetails from "./CourseDetails";
 import translations from "./Translations";
 interface IMailBase {
   currentLanguage: string;
@@ -43,7 +43,7 @@ const MailBase: React.FC<IMailBase> = (props) => {
       <p>{currentTranslation?.greeting}</p>
       <p>{currentTranslation?.afterGreetingSumUp}</p>
       {props.selectedCoursesArray.map((courseObject) => (
-        <CourseDescription
+        <CourseDetails
           key={courseObject.id}
           courseId={courseObject.id}
           currentLanguage={props.currentLanguage}
@@ -51,6 +51,8 @@ const MailBase: React.FC<IMailBase> = (props) => {
           courseName={courseObject.name}
           courseIntro={courseObject.intro}
           courseDescription={courseObject.description}
+          courseDuration={courseObject.duration}
+          courseFrequency={courseObject.frequency}
           amountOneTimePayment={courseObject.price.ammountOneTimePayment}
           otherPaymentAmount={courseObject.price.ammount}
           otherPaymentMethod={courseObject.price.method}

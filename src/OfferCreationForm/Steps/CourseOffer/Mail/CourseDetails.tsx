@@ -15,6 +15,9 @@ interface ICourseDetails {
   selectedCourseKind: string;
   selectedLocalisation: number;
   selectedCoursesTimetableArray: any[];
+  courseDuration: any;
+  courseFrequency: any;
+
 }
 
 const CourseDetails: React.FC<ICourseDetails> = (props) => {
@@ -88,24 +91,26 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
       <p>
         <i>{props.courseDescription}</i>
       </p>
-      <p>{currentTranslation?.Price}</p>
+      <p><b>{currentTranslation?.duration}</b></p>
+      <p>{props.courseDuration.details} {props.courseDuration.text} ({props.courseFrequency.text})</p>
+      <p><b>{currentTranslation?.Price}</b></p>
       {props.amountOneTimePayment !== undefined && (
         <div>
           <p>
-            <b>{props.amountOneTimePayment}</b>
+            {props.amountOneTimePayment}
           </p>
           <p>{currentTranslation?.OR}</p>
         </div>
       )}
       {convertCurrencyStringToDouble(props.otherPaymentAmount) > 0 && (
         <p>
-          {props.otherPaymentMethod}: <b>{props.otherPaymentAmount}</b>
+          {props.otherPaymentMethod} {props.otherPaymentAmount}
         </p>
       )}
       {props.otherPaymentAmount !== undefined &&
         convertCurrencyStringToDouble(props.otherPaymentAmount) === 0 && (
           <p>
-            <b>{props.otherPaymentAmount}</b>
+            {props.otherPaymentAmount}
           </p>
         )}
       <p>
