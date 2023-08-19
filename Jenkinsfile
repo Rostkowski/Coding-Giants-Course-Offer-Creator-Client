@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        label {
-            "Mikrus"
-        }
-    }
+    agent {label "Mikrus"}
     stages {
         stage('Deliver') { 
             steps {
