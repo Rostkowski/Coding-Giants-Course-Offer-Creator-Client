@@ -1,5 +1,5 @@
 pipeline {
-    agent {label "Built-In Node"}
+    agent {label "Mikrus"}
     stages {
         stage('Hello') {
             steps {
