@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+yarn install
 npm run build
 set +x
 
