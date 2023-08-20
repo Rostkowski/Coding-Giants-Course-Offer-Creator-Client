@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import translations from "./Translations";
 
 interface ICourseDetails {
@@ -25,7 +24,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
     (translation) => translation.language === props.currentLanguage
   );
   const convertCurrencyStringToDouble = (currencyString: string) => {
-    return Number(currencyString.replace(/[^0-9\.-]+/g, ""));
+    return Number(currencyString.replace(/[^0-9.-]+/g, ""));
   };
 
   const courseTimetable = props.selectedCoursesTimetableArray.find(
