@@ -1,5 +1,6 @@
 pipeline {
     agent {label 'Mikrus'}
+    tools {nodejs "nodejs"}
     stages {
         stage('Deliver') { 
             steps {
