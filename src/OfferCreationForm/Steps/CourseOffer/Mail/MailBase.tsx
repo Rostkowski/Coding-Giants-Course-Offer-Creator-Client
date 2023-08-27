@@ -7,7 +7,7 @@ interface IMailBase {
   mainContactDetails: { mainPhone: string; mainEmail: string };
   selectedCoursesArray: any[];
   selectedCourseKind: string;
-  selectedLocalisation: number;
+  selectedLocation: number;
   selectedCoursesTimetableArray: any[];
 }
 const MailBase: React.FC<IMailBase> = (props) => {
@@ -58,7 +58,7 @@ const MailBase: React.FC<IMailBase> = (props) => {
           otherPaymentMethod={courseObject.price.method}
           coursePlan={courseObject.plan}
           selectedCourseKind={props.selectedCourseKind}
-          selectedLocalisation={props.selectedLocalisation}
+          selectedLocation={props.selectedLocation}
           selectedCoursesTimetableArray={props.selectedCoursesTimetableArray}
         />
       ))}

@@ -2,31 +2,31 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import Loader from "../../Shared/Loader";
 
-interface ISelectLocalisationForStationaryCourse {
+interface ISelectLocationForStationaryCourse {
   currentLanguage: string;
   currentCountryCode: string;
   selectedCourseKind: string;
-  onLocalisationSelection: (event: any) => void;
+  onLocationSelection: (event: any) => void;
 }
 
-const SelectLocalisationForStationaryCourse: React.FC<
-  ISelectLocalisationForStationaryCourse
+const SelectLocationForStationaryCourse: React.FC<
+  ISelectLocationForStationaryCourse
 > = (props) => {
-  const [courseKindLocalisations, setCourseKindLocalisations] = useState<any[]>(
+  const [courseKindLocations, setCourseKindLocations] = useState<any[]>(
     []
   );
-  let options: any[] = courseKindLocalisations.map((localisation) => {
+  let options: any[] = courseKindLocations.map((location) => {
     return {
-      value: localisation.id,
-      label: `${localisation.address.street} ${localisation.address.city}`,
-      email: localisation.email,
-      phone: localisation.phone,
+      value: location.id,
+      label: `${location.address.street} ${location.address.city}`,
+      email: location.email,
+      phone: location.phone,
     };
   });
-  const [areLocalisationsLoaded, setLocalisationsPresence] = useState(false);
+  const [areLocationsLoaded, setLocationsPresence] = useState(false);
 
   useEffect(() => {
-    setLocalisationsPresence(false);
+    setLocationsPresence(false);
     fetch(
       `https://cors-proxy.rostkowski.uk:40118/https://giganciprogramowaniaformularz.edu.pl/api/Localisation/localisationsByCourseKind/${props.selectedCourseKind}`,
       {
@@ -39,8 +39,8 @@ const SelectLocalisationForStationaryCourse: React.FC<
     )
       .then((response) => response.json())
       .then((data) => {
-        setCourseKindLocalisations([...data]);
-        setLocalisationsPresence(true);
+        setCourseKindLocations([...data]);
+        setLocationsPresence(true);
       });
   }, [
     props.currentCountryCode,
@@ -50,12 +50,12 @@ const SelectLocalisationForStationaryCourse: React.FC<
 
   return (
     <div>
-      {areLocalisationsLoaded ? (
+      {areLocationsLoaded ? (
         <div>
           <Select
             placeholder="Select location"
             options={options}
-            onChange={props.onLocalisationSelection}
+            onChange={props.onLocationSelection}
           />
         </div>
       ) : (
@@ -67,4 +67,4 @@ const SelectLocalisationForStationaryCourse: React.FC<
   );
 };
 
-export default SelectLocalisationForStationaryCourse;
+export default SelectLocationForStationaryCourse;

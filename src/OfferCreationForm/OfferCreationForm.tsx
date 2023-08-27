@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import SelectCountry from "./Steps/SelectCountry";
 import CountryObject from "../models/CountryObjectModel";
 import SelectCourseKind from "./Steps/SelectCourseKind";
-import SelectLocalisationForStationaryCourse from "./Steps/SelectLocalisationForStationaryCourse";
+import SelectLocationForStationaryCourse from "./Steps/SelectLocationForStationaryCourse";
 import SelectCourse from "./Steps/SelectCourse";
 import CourseOffer from "./Steps/CourseOffer/CourseOffer";
 import { ActionMeta, OnChangeValue } from "react-select";
@@ -14,7 +14,7 @@ const OfferCreationForm = () => {
   const [currentLanguage, setCurrentLanguage] = useState("pl-PL");
   const [currentCountryCode, setCurrentCountryCode] = useState("PL");
   const [selectedCourseKind, setSelectedCourseKind] = useState("INITIAL_STATE");
-  const [selectedLocalisation, setSelectedLocalisation] = useState({
+  const [selectedLocation, setSelectedLocation] = useState({
     value: 0,
     label: "INITIAL_STATE",
     email: "",
@@ -46,13 +46,13 @@ const OfferCreationForm = () => {
     nextStep();
   };
 
-  const courseLocalisationSelectionHandler = (choice: {
+  const courseLocationSelectionHandler = (choice: {
     value: number;
     label: string;
     email: string;
     phone: string;
   }) => {
-    setSelectedLocalisation(choice);
+    setSelectedLocation(choice);
     nextStep();
   };
 
@@ -99,11 +99,11 @@ const OfferCreationForm = () => {
     case 2:
       if (selectedCourseKind.includes("STATIONARY")) {
         currentStepComponent = (
-          <SelectLocalisationForStationaryCourse
+          <SelectLocationForStationaryCourse
             currentCountryCode={currentCountryCode}
             currentLanguage={currentLanguage}
             selectedCourseKind={selectedCourseKind}
-            onLocalisationSelection={courseLocalisationSelectionHandler}
+            onLocationSelection={courseLocationSelectionHandler}
           />
         );
       } else {
@@ -118,7 +118,7 @@ const OfferCreationForm = () => {
               currentCountryCode={currentCountryCode}
               currentLanguage={currentLanguage}
               selectedCourseKind={selectedCourseKind}
-              selectedLocalisation={selectedLocalisation.value}
+              selectedLocation={selectedLocation.value}
               onCourseSelection={courseSelectionHandler}
               nextStep={nextStep}
               selectedCourse={selectedCourse}
@@ -135,18 +135,18 @@ const OfferCreationForm = () => {
           selectedCourse={selectedCourse}
           mainContactDetails={{
             mainPhone:
-              selectedLocalisation.value !== 0 &&
+              selectedLocation.value !== 0 &&
               selectedCourseKind.includes("STATIONARY")
-                ? selectedLocalisation.phone
+                ? selectedLocation.phone
                 : countryMainContactDetails.onlineMainPhone,
             mainEmail:
-              selectedLocalisation.value !== 0 &&
+              selectedLocation.value !== 0 &&
               selectedCourseKind.includes("STATIONARY")
-                ? selectedLocalisation.email
+                ? selectedLocation.email
                 : countryMainContactDetails.onlineMainEmail,
           }}
           selectedCourseKind={selectedCourseKind}
-          selectedLocalisation={selectedLocalisation.value}
+          selectedLocation={selectedLocation.value}
         />
       );
       break;

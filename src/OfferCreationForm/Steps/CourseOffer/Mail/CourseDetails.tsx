@@ -12,7 +12,7 @@ interface ICourseDetails {
   otherPaymentMethod: string;
   coursePlan: any[];
   selectedCourseKind: string;
-  selectedLocalisation: number;
+  selectedLocation: number;
   selectedCoursesTimetableArray: any[];
   courseDuration: any;
   courseFrequency: any;
@@ -44,7 +44,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
         </thead>
         <tbody>
           {courseTimetable !== undefined &&
-            courseTimetable.localisation.dates
+            courseTimetable.location.dates
               .filter(
                 (timetable: any) => timetable.availablePlacesNo !== undefined
               )
@@ -131,7 +131,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
 
       <div>
         {courseTimetable !== undefined &&
-        courseTimetable.localisation.dates.filter(
+        courseTimetable.location.dates.filter(
           (timetable: any) => timetable.availablePlacesNo !== undefined
         ).length > 0 ? (
           <div>

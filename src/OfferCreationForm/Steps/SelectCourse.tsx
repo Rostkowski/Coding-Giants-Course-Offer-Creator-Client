@@ -7,7 +7,7 @@ interface ISelectCourse {
   currentCountryCode: string;
   currentLanguage: string;
   selectedCourseKind: string;
-  selectedLocalisation: number;
+  selectedLocation: number;
   selectedCourse: { value: number; label: string }[];
   onCourseSelection: (
     newValue: OnChangeValue<{ value: number; label: string }, true>,
@@ -27,7 +27,7 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
       `https://cors-proxy.rostkowski.uk:40118/https://giganciprogramowaniaformularz.edu.pl/api/Course/${
         isStationary ? "coursesByLocalisation" : "coursesByPostCode"
       }/${props.selectedCourseKind}/${
-        isStationary ? props.selectedLocalisation.toString() : "00000"
+        isStationary ? props.selectedLocation.toString() : "00000"
       }`,
       {
         method: "GET",
@@ -63,7 +63,7 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
     props.currentCountryCode,
     props.currentLanguage,
     props.selectedCourseKind,
-    props.selectedLocalisation,
+    props.selectedLocation,
   ]);
 
   return (

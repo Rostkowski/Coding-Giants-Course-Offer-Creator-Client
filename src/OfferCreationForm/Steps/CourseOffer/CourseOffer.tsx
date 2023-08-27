@@ -10,7 +10,7 @@ interface ICourseOffer {
   selectedCourse: { value: number; label: string }[];
   mainContactDetails: { mainPhone: string; mainEmail: string };
   selectedCourseKind: string;
-  selectedLocalisation: number;
+  selectedLocation: number;
 }
 
 const CourseOffer: React.FC<ICourseOffer> = (props) => {
@@ -52,9 +52,9 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
         
       fetch(
         `https://cors-proxy.rostkowski.uk:40118/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
-          isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
-        }/${props.selectedCourszeKind}/${course.value}/${
-          isStationary ? props.selectedLocalisation.toString() : "00000"
+          isStationary ? "timetablesByLocationId" : "timetablesByPostalCode"
+        }/${props.selectedCourseKind}/${course.value}/${
+          isStationary ? props.selectedLocation.toString() : "00000"
         }/0`,
         {
           method: "GET",
@@ -86,7 +86,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
             selectedCoursesArray={selectedCoursesArray}
             selectedCoursesTimetableArray={timetableData}
             selectedCourseKind={props.selectedCourseKind}
-            selectedLocalisation={props.selectedLocalisation}
+            selectedLocation={props.selectedLocation}
           />
         )}
         init={{
