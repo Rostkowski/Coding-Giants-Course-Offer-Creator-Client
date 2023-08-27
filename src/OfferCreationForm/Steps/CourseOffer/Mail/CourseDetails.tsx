@@ -44,7 +44,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
         </thead>
         <tbody>
           {courseTimetable !== undefined &&
-            courseTimetable.location.dates
+            courseTimetable.localisation.dates
               .filter(
                 (timetable: any) => timetable.availablePlacesNo !== undefined
               )
@@ -131,7 +131,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
 
       <div>
         {courseTimetable !== undefined &&
-        courseTimetable.location.dates.filter(
+        courseTimetable.localisation.dates.filter(
           (timetable: any) => timetable.availablePlacesNo !== undefined
         ).length > 0 ? (
           <div>
