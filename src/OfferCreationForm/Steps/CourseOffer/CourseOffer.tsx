@@ -52,7 +52,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
         
       fetch(
         `https://cors-proxy.rostkowski.uk:40118/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
-          isStationary ? "timetablesByLocationId" : "timetablesByPostalCode"
+          isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
         }/${props.selectedCourseKind}/${course.value}/${
           isStationary ? props.selectedLocation.toString() : "00000"
         }/0`,
