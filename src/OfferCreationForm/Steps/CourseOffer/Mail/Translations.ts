@@ -17,23 +17,22 @@ const translations = [
     duration: "Częstotliwość spotkan:  "
   },
   {
-    language: "en-US",
-    greeting: "Hello!",
-    afterGreetingSumUp:
-      "Regarding our conversation over the phone below you can find details of the offer we talked about.",
-    Price: "Price: ",
-    OR: "or",
-    lessonPlan: "Course plan: ",
-    noAvailableDates: "No available dates",
-    availableDates: "Available dates: ",
-    timetableHour: "Hours",
-    timetableDay: "Day of the week",
-    timetableStartDate: "Start date",
-    timetableAvailableSpots: "Available spots",
-    regards: "Kind regards, ",
-    customerServiceTeam: "Contact Center Team",
-    duration: "Meetings frequency: "
-  },
+    language: "es-ES",
+    greeting: "Buenos días,",
+    afterGreetingSumUp: "después de nuestra conversación, estoy enviando una oferta ",
+    Price: "Precio: ",
+    OR: "o",
+    lessonPlan: "Horario: ",
+    noAvailableDates: "No hay fechas disponibles",
+    availableDates: "Fechas disponibles: ",
+    timetableHour: "Hora",
+    timetableDay: "Día de la semana",
+    timetableStartDate: "Fecha de inicio",
+    timetableAvailableSpots: "Vacantes",
+    regards: "Saludos, ",
+    customerServiceTeam: "Equipo de atención al cliente",
+    duration: "Frecuencia de las reuniones:  "
+  }
 ];
 
 export default translations;
