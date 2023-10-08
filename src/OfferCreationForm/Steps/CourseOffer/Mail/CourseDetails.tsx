@@ -123,9 +123,9 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
           <p>
             <b>{lesson.title}</b>
           </p>
-          <ul>
+          {lesson.description.length > 0 && <ul>
             <li>{lesson.description}</li>
-          </ul>
+          </ul>}
         </div>
       ))}
 
