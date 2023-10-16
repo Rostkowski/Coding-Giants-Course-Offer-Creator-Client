@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import Loader from "../../Shared/Loader";
+import environment from "../../environment.json";
 
 interface ISelectLocationForStationaryCourse {
   currentLanguage: string;
@@ -28,7 +29,7 @@ const SelectLocationForStationaryCourse: React.FC<
   useEffect(() => {
     setLocationsPresence(false);
     fetch(
-      `https://cors-proxy.rostkowski.uk:40118/https://giganciprogramowaniaformularz.edu.pl/api/Localisation/localisationsByCourseKind/${props.selectedCourseKind}`,
+      `${environment.baseApiUrl}/https://giganciprogramowaniaformularz.edu.pl/api/Localisation/localisationsByCourseKind/${props.selectedCourseKind}`,
       {
         method: "GET",
         headers: {

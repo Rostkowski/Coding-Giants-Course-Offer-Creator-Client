@@ -3,6 +3,7 @@ import * as ReactDOMServer from "react-dom/server";
 import { Editor } from "@tinymce/tinymce-react";
 import MailBase from "./Mail/MailBase";
 import Button from "react-bootstrap/Button";
+import environment from "../../../environment.json";
 
 interface ICourseOffer {
   currentLanguage: string;
@@ -27,7 +28,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
   useEffect(() => {
     props.selectedCourse.forEach((course) => {
       fetch(
-        `https://cors-proxy.rostkowski.uk:40118/https://giganciprogramowaniaformularz.edu.pl/api/Course/courses/${course.value}`,
+        `${environment.baseApiUrl}/https://giganciprogramowaniaformularz.edu.pl/api/Course/courses/${course.value}`,
         {
           method: "GET",
           headers: {
@@ -51,7 +52,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
         });
         
       fetch(
-        `https://cors-proxy.rostkowski.uk:40118/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
+        `${environment.baseApiUrl}/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
           isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
         }/${props.selectedCourseKind}/${course.value}/${
           isStationary ? props.selectedLocation.toString() : "00000"

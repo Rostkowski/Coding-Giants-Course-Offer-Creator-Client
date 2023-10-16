@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Loader from "../../Shared/Loader";
+import environment from "../../environment.json";
 
 interface ISelectCourseStep {
   currentLanguage: string;
@@ -16,7 +17,7 @@ const SelectCourseKind: React.FC<ISelectCourseStep> = (props) => {
   useEffect(() => {
     setCourseKindsPresence(false);
     fetch(
-      "https://cors-proxy.rostkowski.uk:40118/https://giganciprogramowaniaformularz.edu.pl/api/Course/courseKindsProgrammingType",
+      `${environment.baseApiUrl}/https://giganciprogramowaniaformularz.edu.pl/api/Course/courseKindsProgrammingType`,
       {
         method: "GET",
         headers: {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Select, { ActionMeta, OnChangeValue } from "react-select";
 import Loader from "../../Shared/Loader";
 import Button from "react-bootstrap/Button";
+import environment from "../../environment.json";
 
 interface ISelectCourse {
   currentCountryCode: string;
@@ -24,7 +25,7 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
   useEffect(() => {
     setCoursesPresence(false);
     fetch(
-      `https://cors-proxy.rostkowski.uk:40118/https://giganciprogramowaniaformularz.edu.pl/api/Course/${
+      `${environment.baseApiUrl}/https://giganciprogramowaniaformularz.edu.pl/api/Course/${
         isStationary ? "coursesByLocalisation" : "coursesByPostCode"
       }/${props.selectedCourseKind}/${
         isStationary ? props.selectedLocation.toString() : "00000"
