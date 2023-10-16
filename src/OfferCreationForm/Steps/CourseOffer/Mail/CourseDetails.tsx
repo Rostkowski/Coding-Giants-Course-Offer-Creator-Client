@@ -123,7 +123,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
           <p>
             <b>{lesson.title}</b>
           </p>
-          {lesson.description.length > 0 && <ul>
+          {lesson.description?.length > 0 && <ul>
             <li>{lesson.description}</li>
           </ul>}
         </div>
@@ -133,7 +133,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
         {courseTimetable !== undefined &&
         courseTimetable.localisation.dates.filter(
           (timetable: any) => timetable.availablePlacesNo !== undefined
-        ).length > 0 ? (
+        )?.length > 0 ? (
           <div>
             <p>
               <b>{currentTranslation?.availableDates}</b>
