@@ -40,7 +40,9 @@ const SelectCourseKind: React.FC<ISelectCourseStep> = (props) => {
             <option value="---">---</option>
             {courseKinds.map((course) => (
               <option key={course.kind} value={course.kind}>
-                {course.kindName}
+                {course.kind.includes("ONLINE")
+                  ? `${course.kindName} (ONLINE)`
+                  : course.kindName}
               </option>
             ))}
           </Form.Select>
