@@ -37,7 +37,7 @@ const SelectCourseKind: React.FC<ISelectCourseStep> = (props) => {
     <div>
       {areCourseKindsLoaded ? (
         <FloatingLabel controlId="courseKindSelect" label="Select course kind">
-          <Form.Select onChange={props.onCourseKindSelection}>
+          <Form.Select onChange={props.onCourseKindSelection} data-cy="courseKinds">
             <option value="---">---</option>
             {courseKinds.map((course) => (
               <option key={course.kind} value={course.kind}>

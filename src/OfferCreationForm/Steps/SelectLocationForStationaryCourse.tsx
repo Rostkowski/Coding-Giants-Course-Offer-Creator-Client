@@ -13,9 +13,7 @@ interface ISelectLocationForStationaryCourse {
 const SelectLocationForStationaryCourse: React.FC<
   ISelectLocationForStationaryCourse
 > = (props) => {
-  const [courseKindLocations, setCourseKindLocations] = useState<any[]>(
-    []
-  );
+  const [courseKindLocations, setCourseKindLocations] = useState<any[]>([]);
   let options: any[] = courseKindLocations.map((location) => {
     return {
       value: location.id,
@@ -57,6 +55,7 @@ const SelectLocationForStationaryCourse: React.FC<
             placeholder="Select location"
             options={options}
             onChange={props.onLocationSelection}
+            data-cy="locationsSelectBox"
           />
         </div>
       ) : (

@@ -21,7 +21,10 @@ const MailBase: React.FC<IMailBase> = (props) => {
       : "https://www.codinggiants.com/templates/emp_template/icons/logo/color.svg";
 
   return (
-    <div style={{ alignItems: "center", textAlign: "center" }}>
+    <div
+      style={{ alignItems: "center", textAlign: "center" }}
+      data-cy="offerEditor"
+    >
       <div style={{ textAlign: "center" }}>
         <img
           src="https://giganciprogramowania.edu.pl/images/szablon_gora_strony.png"
@@ -66,9 +69,12 @@ const MailBase: React.FC<IMailBase> = (props) => {
       <p>
         <i>{currentTranslation?.customerServiceTeam}</i>
       </p>
-      <p>&#128231; <a href={props.mainContactDetails.mainEmail}>
-        {props.mainContactDetails.mainEmail}
-      </a></p>
+      <p>
+        &#128231;{" "}
+        <a href={props.mainContactDetails.mainEmail}>
+          {props.mainContactDetails.mainEmail}
+        </a>
+      </p>
       <p>&#128241; {props.mainContactDetails.mainPhone}</p>
     </div>
   );

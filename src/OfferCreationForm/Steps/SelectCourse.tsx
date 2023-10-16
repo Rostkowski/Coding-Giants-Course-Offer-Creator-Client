@@ -77,6 +77,7 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
             options={listOfCourses}
             onChange={props.onCourseSelection}
             value={props.selectedCourse}
+            data-cy="coursesSelectBox"
           />
           <Button
             variant="primary"
@@ -84,6 +85,7 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
             type="button"
             onClick={props.nextStep}
             disabled={!(props.selectedCourse.length > 0)}
+            data-cy="coursesNextButton"
           >
             Generate Offer
           </Button>
