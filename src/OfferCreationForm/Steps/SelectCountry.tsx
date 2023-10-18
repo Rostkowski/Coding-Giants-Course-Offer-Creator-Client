@@ -41,7 +41,7 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
   return (
     <div>
       <FloatingLabel controlId="countrySelect" label="Select country">
-        <Form.Select onChange={countrySelectionHandler} value="---">
+        <Form.Select onChange={countrySelectionHandler} value="---" data-cy="selectCountry">
           <option value="---">---</option>
           {countryList.map((country) => (
             <option key={country.key} value={country.countryCode}>

@@ -70,14 +70,13 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
   return (
     <div>
       {areCoursesLoaded ? (
-        <div>
+        <div data-cy="coursesSelectBox">
           <Select
             placeholder="Select course"
             isMulti
             options={listOfCourses}
             onChange={props.onCourseSelection}
             value={props.selectedCourse}
-            data-cy="coursesSelectBox"
           />
           <Button
             variant="primary"
