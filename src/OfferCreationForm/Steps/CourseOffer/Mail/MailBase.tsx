@@ -23,7 +23,6 @@ const MailBase: React.FC<IMailBase> = (props) => {
   return (
     <div
       style={{ alignItems: "center", textAlign: "center" }}
-      data-cy="offerEditor"
     >
       <div style={{ textAlign: "center" }}>
         <img
@@ -33,6 +32,7 @@ const MailBase: React.FC<IMailBase> = (props) => {
         ></img>
         <img
           src={logoImageUrl}
+          data-cy="mailLogo"
           style={{
             display: "block",
             height: "81px",

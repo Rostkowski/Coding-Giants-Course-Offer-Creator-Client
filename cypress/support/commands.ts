@@ -11,3 +11,19 @@ Cypress.Commands.add(
     cy.get("[data-cy='coursesNextButton']").click();
   }
 );
+Cypress.Commands.add("getTinyMCEIframeBody", () => {
+  return cy
+    .get('iframe[id*="tiny"]')
+    .its("0.contentDocument.body")
+    .should("not.be.empty")
+    .then(cy.wrap);
+});
+Cypress.Commands.add("baseCourseOfferAssertions", () => {
+  cy.getTinyMCEIframeBody()
+  .find("[data-cy='mailLogo']")
+  .should(
+    "have.attr",
+    "src",
+    "https://giganciprogramowania.edu.pl/images/szablon_logo.png"
+  );
+})

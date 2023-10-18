@@ -50,9 +50,11 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
             });
           }
         });
-        
+
       fetch(
-        `${environment.baseApiUrl}/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
+        `${
+          environment.baseApiUrl
+        }/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
           isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
         }/${props.selectedCourseKind}/${course.value}/${
           isStationary ? props.selectedLocation.toString() : "00000"
@@ -72,7 +74,15 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
           });
         });
     });
-  }, [isStationary, props.currentCountryCode, props.currentLanguage, props.selectedCourse, props.selectedCourseKind, props.selectedLocation, selectedCoursesArray]);
+  }, [
+    isStationary,
+    props.currentCountryCode,
+    props.currentLanguage,
+    props.selectedCourse,
+    props.selectedCourseKind,
+    props.selectedLocation,
+    selectedCoursesArray,
+  ]);
 
   return (
     <>

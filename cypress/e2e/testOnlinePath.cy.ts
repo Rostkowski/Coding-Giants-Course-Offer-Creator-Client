@@ -34,5 +34,6 @@ describe("Tests offer generation for online path", () => {
       "Semestralne kursy z programowania (ONLINE)",
       onlineSemesterStub.name
     );
+    cy.baseCourseOfferAssertions()
   });
 });
