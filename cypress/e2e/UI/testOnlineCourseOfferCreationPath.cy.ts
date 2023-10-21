@@ -1,6 +1,6 @@
-import { courseKindsStub } from "../fixtures/courseKindsStub";
-import { semesterCoursesByPostCodeStub } from "../fixtures/coursesByPostCodeStub";
-import { onlineSemesterStub, onlineSemesterStubForDates } from "../fixtures/onlineSemesterStub";
+import { courseKindsStub } from "../../fixtures/courseKindsStub";
+import { semesterCoursesByPostCodeStub } from "../../fixtures/coursesByPostCodeStub";
+import { onlineSemesterStub, onlineSemesterStubForDates } from "../../fixtures/onlineSemesterStub";
 
 const today = new Date();
 
