@@ -33,13 +33,13 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
 
   const timatableDates = (
     <div>
-      <table style={{ marginLeft: "auto", marginRight: "auto" }}>
+      <table data-cy="tableWithLessonDates" style={{ marginLeft: "auto", marginRight: "auto" }}>
         <thead>
           <tr>
-            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableHour}</th>
-            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableDay}</th>
-            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableStartDate}</th>
-            <th style={{border: "1px solid black"}}>{currentTranslation?.timetableAvailableSpots}</th>
+            <th style={{ border: "1px solid black" }}>{currentTranslation?.timetableHour}</th>
+            <th style={{ border: "1px solid black" }}>{currentTranslation?.timetableDay}</th>
+            <th style={{ border: "1px solid black" }}>{currentTranslation?.timetableStartDate}</th>
+            <th style={{ border: "1px solid black" }}>{currentTranslation?.timetableAvailableSpots}</th>
           </tr>
         </thead>
         <tbody>
@@ -49,7 +49,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
                 (timetable: any) => timetable.availablePlacesNo !== undefined
               )
               .map((timetable: any) => (
-                <tr key={timetable.timetableId}>
+                <tr data-cy="rowWithLessonDates" key={timetable.timetableId}>
                   {!timetable.title.includes(" ") ? (
                     <td key={timetable.description}>{timetable.description}</td>
                   ) : (
@@ -115,25 +115,27 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
       <p>
         <b>{currentTranslation?.lessonPlan}</b>
       </p>
-      {props.coursePlan.map((lesson) => (
-        <div
-          key={lesson.lessonNumber}
-          style={{ alignItems: "left", textAlign: "left" }}
-        >
-          <p>
-            <b>{lesson.title}</b>
-          </p>
-          {lesson.description?.length > 0 && <ul>
-            <li>{lesson.description}</li>
-          </ul>}
-        </div>
-      ))}
-
+      <div data-cy="coursePlanContainer">
+        {props.coursePlan.map((lesson) => (
+          <div
+            data-cy="coursePlanLessonContainer"
+            key={lesson.lessonNumber}
+            style={{ alignItems: "left", textAlign: "left" }}
+          >
+            <p>
+              <b>{lesson.title}</b>
+            </p>
+            {lesson.description?.length > 0 && <ul>
+              <li>{lesson.description}</li>
+            </ul>}
+          </div>
+        ))}
+      </div>
       <div>
         {courseTimetable !== undefined &&
-        courseTimetable.localisation.dates.filter(
-          (timetable: any) => timetable.availablePlacesNo !== undefined
-        )?.length > 0 ? (
+          courseTimetable.localisation.dates.filter(
+            (timetable: any) => timetable.availablePlacesNo !== undefined
+          )?.length > 0 ? (
           <div>
             <p>
               <b>{currentTranslation?.availableDates}</b>

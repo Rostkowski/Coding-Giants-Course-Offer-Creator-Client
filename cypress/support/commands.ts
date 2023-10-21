@@ -18,12 +18,23 @@ Cypress.Commands.add("getTinyMCEIframeBody", () => {
     .should("not.be.empty")
     .then(cy.wrap);
 });
-Cypress.Commands.add("baseCourseOfferAssertions", () => {
+Cypress.Commands.add("baseCourseOfferAssertions", (numberOfLessons: number, numberOfAvailableDates: number) => {
   cy.getTinyMCEIframeBody()
-  .find("[data-cy='mailLogo']")
-  .should(
-    "have.attr",
-    "src",
-    "https://giganciprogramowania.edu.pl/images/szablon_logo.png"
-  );
+    .find("[data-cy='mailLogo']")
+    .should(
+      "have.attr",
+      "src",
+      "https://giganciprogramowania.edu.pl/images/szablon_logo.png"
+    )
+
+  cy.getTinyMCEIframeBody()
+    .find('[data-cy="coursePlanContainer"]').each(element => {
+      expect(element.find('[data-cy="coursePlanLessonContainer"]').length).to.be.equal(numberOfLessons);
+    })
+
+  cy.getTinyMCEIframeBody()
+    .find('[data-cy="tableWithLessonDates"] > tbody').each(element => {
+      expect(element.find('[data-cy="rowWithLessonDates"]').length).to.be.equal(2);
+    })
+
 })
