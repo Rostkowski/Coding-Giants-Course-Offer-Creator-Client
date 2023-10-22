@@ -24,8 +24,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-server": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "cy:run": "npx cypress run",
+    "test": "start-server-and-test start-server 3000 cy:run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -45,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "start-server-and-test": "^2.0.1"
   }
 }
