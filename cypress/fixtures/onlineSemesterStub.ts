@@ -1,4 +1,3 @@
-
 export const onlineSemesterStub = {
   "id": 270,
   "name": "Podstawy tworzenia gier semestr 1 (Scratch, Minecraft Education) ONLINE",
@@ -158,6 +157,7 @@ export const onlineSemesterStub = {
 export let onlineSemesterStubForDates = (today: Date) => {
   let tomorrow = new Date();
   tomorrow.setDate(today.getDate() + 1);
+  const daysInPolish = ["Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"];
 
   return {
     "courseId": 270,
@@ -172,9 +172,9 @@ export let onlineSemesterStubForDates = (today: Date) => {
         {
           "timetableId": 61454,
           "type": "normal",
-          "title": `${today.getDay()}`,
+          "title": `${daysInPolish[today.getDay()]}`,
           "description": "15:00-16:35",
-          "dayOfTheWeek": `${today.getDay()}`,
+          "dayOfTheWeek": `${daysInPolish[today.getDay()]}`,
           "availablePlacesNo": 2,
           "availablePlaces": "Wolnych miejsc: 2",
           "price": "1 536,00 zł",
@@ -188,9 +188,9 @@ export let onlineSemesterStubForDates = (today: Date) => {
         {
           "timetableId": 61454,
           "type": "normal",
-          "title": `${tomorrow.getDay()}`,
+          "title": `${daysInPolish[tomorrow.getDay()]}`,
           "description": "15:00-16:35",
-          "dayOfTheWeek": `${tomorrow.getDay()}`,
+          "dayOfTheWeek": `${daysInPolish[tomorrow.getDay()]}`,
           "availablePlacesNo": 2,
           "availablePlaces": "Wolnych miejsc: 2",
           "price": "1 536,00 zł",
