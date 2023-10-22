@@ -1,3 +1,4 @@
+import { Address } from "../../../../models/AddressModel";
 import translations from "./Translations";
 
 interface ICourseDetails {
@@ -16,7 +17,7 @@ interface ICourseDetails {
   selectedCoursesTimetableArray: any[];
   courseDuration: any;
   courseFrequency: any;
-
+  address: Address
 }
 
 const CourseDetails: React.FC<ICourseDetails> = (props) => {
@@ -33,6 +34,10 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
 
   const timatableDates = (
     <div>
+      {!props.address?.city.toLowerCase().includes('online') && 
+        (<div>
+          <p>{props.address?.city}, {props.address?.street}</p>
+        </div>)}
       <table data-cy="tableWithLessonDates" style={{ marginLeft: "auto", marginRight: "auto" }}>
         <thead>
           <tr>
