@@ -6,3 +6,8 @@
 yarn install
 yarn start
 ```
+
+# Run tests
+```
+npm test
+```
