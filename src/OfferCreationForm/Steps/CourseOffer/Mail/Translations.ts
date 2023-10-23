@@ -14,7 +14,7 @@ const translations = [
     timetableAvailableSpots: "Wolne miejsca",
     regards: "Pozdrawiamy, ",
     customerServiceTeam: "Zespół ds. obsługi klienta",
-    duration: "Częstotliwość spotkan:  "
+    duration: "Częstotliwość spotkań:  "
   },
   {
     language: "es-ES",

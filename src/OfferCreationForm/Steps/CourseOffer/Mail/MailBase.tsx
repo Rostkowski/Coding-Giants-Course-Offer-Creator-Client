@@ -72,7 +72,7 @@ const MailBase: React.FC<IMailBase> = (props) => {
       </p>
       <p>
         &#128231;{" "}
-        <a href={props.mainContactDetails.mainEmail}>
+        <a href={`mailto:${props.mainContactDetails.mainEmail}`}>
           {props.mainContactDetails.mainEmail}
         </a>
       </p>

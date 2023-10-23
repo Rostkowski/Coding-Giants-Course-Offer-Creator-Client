@@ -24,6 +24,16 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
   const [selectedCoursesArray, setSelectedCoursesArray] = useState<any[]>([]);
   const [timetableData, setTimetableData] = useState<any[]>([]);
   const isStationary = props.selectedCourseKind.includes("STATIONARY");
+  function copyToClip(str: string) {
+    function listener(e: any) {
+      e.clipboardData.setData("text/html", str);
+      e.clipboardData.setData("text/plain", str);
+      e.preventDefault();
+    }
+    document.addEventListener("copy", listener);
+    document.execCommand("copy");
+    document.removeEventListener("copy", listener);
+  };
 
   useEffect(() => {
     props.selectedCourse.forEach((course) => {
@@ -106,9 +116,9 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
         className="w-100 mt-1"
         variant="primary"
         type="button"
-        onClick={log}
+        onClick={() => copyToClip(editorRef.current.getContent())}
       >
-        Log editor content
+        Copy to clipboard
       </Button>
     </>
   );
