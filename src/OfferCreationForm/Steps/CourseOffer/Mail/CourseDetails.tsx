@@ -32,9 +32,11 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
     (timetable) => timetable.courseId === props.courseId
   );
 
+  const hoursPattern: RegExp = /(\d{1,2}):(\d{1,2})-(\d{1,2}):(\d{1,2})/;
+
   const timatableDates = (
     <div data-cy="courseOfferDetails">
-      {!props.address?.city.toLowerCase().includes('online') && 
+      {!props.address?.city.toLowerCase().includes('online') &&
         (<div>
           <p>{props.address?.city}, {props.address?.street}</p>
         </div>)}
@@ -51,27 +53,14 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
           {courseTimetable !== undefined &&
             courseTimetable.localisation.dates
               .filter(
-                (timetable: any) => timetable.availablePlacesNo !== undefined
+                (timetable: any) => timetable.availablePlacesNo !== undefined && String(timetable.description).match(hoursPattern)
               )
               .map((timetable: any) => (
                 <tr data-cy="rowWithLessonDates" key={timetable.timetableId}>
-                  {!timetable.title.includes(" ") ? (
-                    <td key={timetable.description}>{timetable.description}</td>
-                  ) : (
-                    <td key={timetable.title}>
-                      {timetable.title.replace(
-                        timetable.title.split(" ")[0],
-                        ""
-                      )}
-                    </td>
-                  )}
-                  {!timetable.title.includes(" ") ? (
-                    <td key={timetable.title}>{timetable.title}</td>
-                  ) : (
-                    <td key={timetable.title.split(" ")[0]}>
-                      {timetable.title.split(" ")[0]}
-                    </td>
-                  )}
+                  <td key={timetable.description}>{timetable.description}</td>
+                  <td key={new Date(timetable.startDateDateTimeFormat).toLocaleDateString(props.currentLanguage, { weekday: "long" })}>
+                    {timetable.dayOfTheWeek === "Multiple" ? (currentTranslation?.multipleTimesAWeek) : new Date(timetable.startDateDateTimeFormat).toLocaleDateString(props.currentLanguage, { weekday: "long" })}
+                  </td>
                   <td key={timetable.startDate}>{timetable.startDate}</td>
                   <td key={timetable.availablePlacesNo}>
                     {timetable.availablePlacesNo}
