@@ -118,7 +118,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
       </Button>
       <div style={{ zIndex: 1000, position: "absolute", bottom: 0, right: 0 }}>
         <Toast onClick={() => setToastVisibility(false)} show={isToastVisible} delay={3000} autohide>
-          <Toast.Body>Copied to clipboard</Toast.Body>
+          <Toast.Body>Copied to clipboard! Paste it into your email client. <a href="mailto:">Click here to open</a></Toast.Body>
         </Toast>
       </div>
     </>
