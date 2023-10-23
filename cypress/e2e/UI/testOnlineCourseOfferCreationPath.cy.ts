@@ -1,8 +1,7 @@
 import { courseKindsStub } from "../../fixtures/courseKindsStub";
 import { semesterCoursesByPostCodeStub } from "../../fixtures/coursesByPostCodeStub";
-import { onlineSemesterStub, onlineSemesterStubForDates } from "../../fixtures/onlineSemesterStub";
-
-const today = new Date();
+import { PTG1Dates } from "../../fixtures/courses/SemesterOnlineCourses/PTG1/PTG1Dates";
+import { PTG1Description } from "../../fixtures/courses/SemesterOnlineCourses/PTG1/PTG1Description";
 
 describe("Tests offer generation for online path", () => {
   beforeEach(() => {
@@ -27,19 +26,20 @@ describe("Tests offer generation for online path", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "**/courses/*",
+        url: "**/courses/270",
       },
-      onlineSemesterStub
-    ).as("onlineSemesterStub");
+      PTG1Description
+    ).as("PTG1Description");
+
     cy.intercept({
       method: "GET",
-      url: "**/timetablesByPostalCode/*/*/*/*"
-    }, onlineSemesterStubForDates(today))
-      .as("onlineSemesterStubForDates")
+      url: "**/timetablesByPostalCode/*/270/*/*"
+    }, PTG1Dates)
+      .as("PTG1Dates")
     cy.generateOffer(
       "Poland",
       "Semestralne kursy z programowania (ONLINE)",
-      onlineSemesterStub.name
+      PTG1Description.name
     );
     cy.baseCourseOfferAssertions(18, 2)
   });

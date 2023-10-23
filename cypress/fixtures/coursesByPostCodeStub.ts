@@ -34,7 +34,37 @@ export const semesterCoursesByPostCodeStub = {
             "registrationType": "Registered",
             "courseType": "OnlineCourse",
             "courseLength": "FULL_SEMESTER"
-          }
+          },
+          {
+            "isAvailable": true,
+            "id": 292,
+            "courseOrder": 4,
+            "name": "Przygody z programowaniem (Minecraft Education zaawansowany) ONLINE",
+            "courseNotes": "Rekomendowany dla uczniów, którzy ukończyli drugi semestr kursu Podstawy tworzenia gier  lub znają Scratcha na poziomie średnio-zaawansowanym. ",
+            "courseIntroNotes": "",
+            "icon": "/images/courses/przygody-z-programowaniem-online.jpg",
+            "intro": "Świat Minecrafta stoi otworem. Najwyższa pora pokazać jak połączyć edukację ze światem Minecraft. Dzięki poznaniu różnych pojęć programistycznych, zasad tworzenia modów i animacji sprawimy, że rzeczy nieosiągalne w Minecrafcie będą w zasięgu naszej ręki (a konkretnie kilofa).",
+            "showAdditionalDescriptions": true,
+            "isReadonly": false,
+            "bestseller": false,
+            "categories": [
+                4
+            ],
+            "duration": {
+                "text": "przez cały semestr",
+                "details": "1x w tygodniu - 2 x 45 minut"
+            },
+            "price": {
+                "ammount": "239,00 zł",
+                "ammountOneTimePayment": "1 095,00 zł",
+                "method": "płatność miesięczna od",
+                "oneTimePaymentMethod": "-100zł przy płatności jednorazowej",
+                "isoCode": "PLN"
+            },
+            "registrationType": "Registered",
+            "courseType": "OnlineCourse",
+            "courseLength": "FULL_SEMESTER"
+        }
         ]
       }
     ],
