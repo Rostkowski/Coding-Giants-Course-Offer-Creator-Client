@@ -74,15 +74,7 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
           });
         });
     });
-  }, [
-    isStationary,
-    props.currentCountryCode,
-    props.currentLanguage,
-    props.selectedCourse,
-    props.selectedCourseKind,
-    props.selectedLocation,
-    selectedCoursesArray,
-  ]);
+  }, []);
 
   return (
     <>
