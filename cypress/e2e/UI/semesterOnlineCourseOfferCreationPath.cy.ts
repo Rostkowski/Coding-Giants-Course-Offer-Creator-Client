@@ -5,7 +5,10 @@ import { PTG1Description } from "../../fixtures/courses/SemesterOnlineCourses/PT
 import { PZPDescription } from "../../fixtures/courses/SemesterOnlineCourses/PZP/PZPDescription";
 import { PZPDates } from "../../fixtures/courses/SemesterOnlineCourses/PZP/PZPDates";
 
-describe("Tests offer generation for online path", () => {
+const semesterOnlineCoursesDescriptions = [PTG1Description, PZPDescription];
+const semesterOnlineCoursesDates = [PTG1Dates, PZPDates];
+
+describe("Tests offer generation for semester online courses", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.intercept(
@@ -25,37 +28,36 @@ describe("Tests offer generation for online path", () => {
   });
 
   it("generates a course offer for SEMESTER_ONLINE", () => {
-    cy.intercept(
-      {
-        method: "GET",
-        url: "**/courses/270",
-      },
-      PTG1Description
-    ).as("PTG1Description");
-    cy.intercept({
-      method: "GET",
-      url: "**/timetablesByPostalCode/*/270/*/*"
-    }, PTG1Dates)
-      .as("PTG1Dates")
-
+    semesterOnlineCoursesDescriptions.forEach(course => {
       cy.intercept(
         {
           method: "GET",
-          url: "**/courses/292",
+          url: `**/courses/${course.id}`,
         },
-        PZPDescription
-      ).as("PZPDescription");
+        course
+      );
+    });
+
+    semesterOnlineCoursesDates.forEach(course => {
       cy.intercept({
         method: "GET",
-        url: "**/timetablesByPostalCode/*/292/*/*"
-      }, PZPDates)
-        .as("PZPDates")
+        url: `**/timetablesByPostalCode/*/${course.courseId}/*/*`
+      }, course);
+    })
 
-    cy.generateOffer(
-      "Poland",
-      "Semestralne kursy z programowania (ONLINE)",
-      [PTG1Description.name, PZPDescription.name]
-    );
-    cy.baseCourseOfferAssertions(18, 2)
+    cy.selectCountry("Poland");
+    cy.selectCourseKind("Semestralne kursy z programowania (ONLINE)");
+    cy.selectCourses(semesterOnlineCoursesDescriptions.map(course => course.name));
+    cy.clickCoursesNextButton();
+
+    semesterOnlineCoursesDescriptions.forEach(course => {
+      cy.hasExactNumberOfLessonsInACourse(course.plan.length)
+    });
+
+    semesterOnlineCoursesDates.forEach(course => {
+      cy.hasExactNumberOfAvailableDates(course.localisation.dates.length)
+    });
+
+    cy.hasExactNumberOfCoursesInOffer(semesterOnlineCoursesDescriptions.length);
   });
 });

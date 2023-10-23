@@ -3,9 +3,14 @@ export {};
 declare global {
   namespace Cypress {
     interface Chainable {
-      generateOffer(country: string, courseKind: string, courses: string[]): Chainable<JQuery<HTMLElement>>;
+      selectCountry(country: string): Chainable<JQuery<HTMLElement>>;
+      selectCourseKind(courseKind: string): Chainable<JQuery<HTMLElement>>
+      selectCourses(courses: string[]): Chainable<JQuery<HTMLElement>>
+      clickCoursesNextButton(): Chainable<JQuery<HTMLElement>>
       getTinyMCEIframeBody(): Cypress.Chainable<any>;
-      baseCourseOfferAssertions(numberOfLessons: number, numberOfAvailableDates: number): Chainable<JQuery<HTMLElement>>;
+      hasExactNumberOfAvailableDates(numberOfAvailableDates: number): Chainable<JQuery<HTMLElement>>;
+      hasExactNumberOfLessonsInACourse(numberOfLessons: number): Chainable<JQuery<HTMLElement>>;
+      hasExactNumberOfCoursesInOffer(numberOfCourses: number): Chainable<JQuery<HTMLElement>>;
     }
   }
 }

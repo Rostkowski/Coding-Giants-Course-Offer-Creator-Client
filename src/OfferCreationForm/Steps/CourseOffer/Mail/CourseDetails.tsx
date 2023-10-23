@@ -33,7 +33,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
   );
 
   const timatableDates = (
-    <div>
+    <div data-cy="courseOfferDetails">
       {!props.address?.city.toLowerCase().includes('online') && 
         (<div>
           <p>{props.address?.city}, {props.address?.street}</p>
