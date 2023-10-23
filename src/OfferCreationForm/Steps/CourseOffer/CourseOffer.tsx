@@ -4,6 +4,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import MailBase from "./Mail/MailBase";
 import Button from "react-bootstrap/Button";
 import environment from "../../../environment.json";
+import Toast from 'react-bootstrap/Toast';
 
 interface ICourseOffer {
   currentLanguage: string;
@@ -24,15 +25,13 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
   const [selectedCoursesArray, setSelectedCoursesArray] = useState<any[]>([]);
   const [timetableData, setTimetableData] = useState<any[]>([]);
   const isStationary = props.selectedCourseKind.includes("STATIONARY");
+  const [isToastVisible, setToastVisibility] = useState(false);
+
   function copyToClip(str: string) {
-    function listener(e: any) {
-      e.clipboardData.setData("text/html", str);
-      e.clipboardData.setData("text/plain", str);
-      e.preventDefault();
-    }
-    document.addEventListener("copy", listener);
-    document.execCommand("copy");
-    document.removeEventListener("copy", listener);
+    const blob = new Blob([str], { type: 'text/html' });
+    const item = new ClipboardItem({ 'text/html': blob });
+    navigator.clipboard.write([item]);
+    setToastVisibility(true);
   };
 
   useEffect(() => {
@@ -62,12 +61,9 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
         });
 
       fetch(
-        `${
-          environment.baseApiUrl
-        }/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${
-          isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
-        }/${props.selectedCourseKind}/${course.value}/${
-          isStationary ? props.selectedLocation.toString() : "00000"
+        `${environment.baseApiUrl
+        }/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
+        }/${props.selectedCourseKind}/${course.value}/${isStationary ? props.selectedLocation.toString() : "00000"
         }/0`,
         {
           method: "GET",
@@ -120,6 +116,11 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
       >
         Copy to clipboard
       </Button>
+      <div style={{ zIndex: 1000, position: "absolute", bottom: 0, right: 0 }}>
+        <Toast onClick={() => setToastVisibility(false)} show={isToastVisible} delay={3000} autohide>
+          <Toast.Body>Copied to clipboard</Toast.Body>
+        </Toast>
+      </div>
     </>
   );
 };
