@@ -27,7 +27,7 @@ describe("Tests offer generation for semester online courses", () => {
     ).as("coursesByPostCodeStub");
   });
 
-  it("generates a course offer for SEMESTER_ONLINE", () => {
+  it("generates a course offer for SEMESTER_ONLINE in Poland", () => {
     semesterOnlineCoursesDescriptions.forEach(course => {
       cy.intercept(
         {
@@ -50,6 +50,8 @@ describe("Tests offer generation for semester online courses", () => {
     cy.selectCourses(semesterOnlineCoursesDescriptions.map(course => course.name));
     cy.clickCoursesNextButton();
 
+    cy.hasExactNumberOfCoursesInOffer(semesterOnlineCoursesDescriptions.length);
+
     semesterOnlineCoursesDescriptions.forEach(course => {
       cy.hasExactNumberOfLessonsInACourse(course.plan.length)
     });
@@ -57,7 +59,5 @@ describe("Tests offer generation for semester online courses", () => {
     semesterOnlineCoursesDates.forEach(course => {
       cy.hasExactNumberOfAvailableDates(course.localisation.dates.length)
     });
-
-    cy.hasExactNumberOfCoursesInOffer(semesterOnlineCoursesDescriptions.length);
   });
 });
