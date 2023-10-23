@@ -1,5 +1,3 @@
-import '../../../../extensionMethods/getDayOfTheWeek';
-
 const today = new Date();
 
 export const PTG1Dates = {
@@ -15,9 +13,9 @@ export const PTG1Dates = {
             {
                 "timetableId": 12345,
                 "type": "normal",
-                "title": `${today.getDayOfTheWeekInLocalLanguage('pl-PL')}`,
+                "title": `${today.toLocaleDateString("pl-PL", {weekday: "long"})}`,
                 "description": "15:00-16:35",
-                "dayOfTheWeek": `${today.getDayOfTheWeekInLocalLanguage('pl-PL')}`,
+                "dayOfTheWeek": `${today.toLocaleDateString("pl-PL", {weekday: "long"})}`,
                 "availablePlacesNo": 2,
                 "availablePlaces": "Wolnych miejsc: 2",
                 "price": "1 536,00 zł",
@@ -31,9 +29,9 @@ export const PTG1Dates = {
             {
                 "timetableId": 12346,
                 "type": "normal",
-                "title": `${today.getDayOfTheWeekInLocalLanguage('pl-PL')}`,
+                "title": `${today.toLocaleDateString("pl-PL", {weekday: "long"})}`,
                 "description": "18:00-20:35",
-                "dayOfTheWeek": `${today.getDayOfTheWeekInLocalLanguage('pl-PL')}`,
+                "dayOfTheWeek": `${today.toLocaleDateString("pl-PL", {weekday: "long"})}`,
                 "availablePlacesNo": 2,
                 "availablePlaces": "Wolnych miejsc: 2",
                 "price": "1 536,00 zł",
