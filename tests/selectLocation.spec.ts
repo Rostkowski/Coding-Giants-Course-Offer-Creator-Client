@@ -19,6 +19,7 @@ test("When clicking on select element with label 'select location' a list with a
     await selectCourseKindPage.selectCourseKind(selectCourseKindPage.enumValuesForStationaryKinds[0])
 
     const locations = await selectLocationPage.getLocationsForStationaryKind(selectCourseKindPage.enumValuesForStationaryKinds[0], "PL", "pl-PL");
-    await page.locator("[class*='indicatorContainer']").click();
-    await expect(page.locator(`[id*='listbox'] > [class*='MenuList'] > [id*='-option-']`)).toHaveCount(locations.length);
+    
+    await page.locator(EnumSelector.selectLocationSelectBoxIndicator).click();
+    await expect(page.locator(EnumSelector.selectLocationOptions)).toHaveCount(locations.length);
 })
