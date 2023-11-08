@@ -48,14 +48,13 @@ const SelectLocationForStationaryCourse: React.FC<
   ]);
 
   return (
-    <div>
+    <div data-cy="locationsSelectBox">
       {areLocationsLoaded ? (
         <div>
           <Select
             placeholder="Select location"
             options={options}
             onChange={props.onLocationSelection}
-            data-cy="locationsSelectBox"
           />
         </div>
       ) : (
