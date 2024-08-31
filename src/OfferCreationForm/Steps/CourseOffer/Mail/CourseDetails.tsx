@@ -53,7 +53,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
           {courseTimetable !== undefined &&
             courseTimetable.localisation.dates
               .filter(
-                (timetable: any) => timetable.availablePlacesNo !== undefined && String(timetable.description).match(hoursPattern)
+                (timetable: any) => timetable.availablePlacesNo !== undefined && String(timetable.description).match(hoursPattern) && !timetable.isGroupForRegistrationBeforeDateSelection
               )
               .map((timetable: any) => (
                 <tr data-cy="rowWithLessonDates" key={timetable.timetableId}>
