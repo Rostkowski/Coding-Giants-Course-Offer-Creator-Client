@@ -128,7 +128,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
       <div>
         {courseTimetable !== undefined &&
           courseTimetable.localisation.dates.filter(
-            (timetable: any) => timetable.availablePlacesNo !== undefined
+            (timetable: any) => timetable.availablePlacesNo !== undefined && !timetable.isGroupForRegistrationBeforeDateSelection
           )?.length > 0 ? (
           <div>
             <p>
