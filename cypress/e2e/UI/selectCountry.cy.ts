@@ -22,7 +22,7 @@ describe("Test the select country functionality", () => {
     })
 
     it("When clicking on select element with label 'select country' a list with with available countries should appear.", () => {
-        cy.get("[data-cy='selectCountry']").get("option").should('have.text', '---PolandSpain');
+        cy.get("[data-cy='selectCountry']").get("option").should('have.text', '---PolandSpainItaly');
     })
 
     it("When clicking on the '---' element inside select element with label 'select country' nothing should happen ", () => {

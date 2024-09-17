@@ -34,7 +34,25 @@ const translations = [
     customerServiceTeam: "Equipo de atención al cliente",
     duration: "Frecuencia de las reuniones:  ",
     multipleTimesAWeek: "Varias veces por semana"
-  }
+  },
+  {
+    language: "it-IT",
+    greeting: "Buongiorno,",
+    afterGreetingSumUp: "in seguito alla nostra conversazione, vi invio un'offerta ",
+    Price: "Prezzo: ",
+    OR: "o",
+    lessonPlan: "Orario: ",
+    noAvailableDates: "Nessuna data disponibile",
+    availableDates: "Date disponibili: ",
+    timetableHour: "Ora",
+    timetableDay: "Giorno della settimana",
+    timetableStartDate: "Data di inizio",
+    timetableAvailableSpots: "Offerte di lavoro",
+    regards: "Saluti, ",
+    customerServiceTeam: "Team di assistenza clienti",
+    duration: "Frequenza delle riunioni:  ",
+    multipleTimesAWeek: "Più volte alla settimana"
+  },
 ];
 
 export default translations;
