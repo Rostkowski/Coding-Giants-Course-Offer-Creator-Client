@@ -87,14 +87,6 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
       <p><b>{currentTranslation?.duration}</b></p>
       <p>{props.courseDuration.details} {props.courseDuration.text} ({props.courseFrequency.text})</p>
       <p><b>{currentTranslation?.Price}</b></p>
-      {props.amountOneTimePayment !== undefined && (
-        <div>
-          <p>
-            {props.amountOneTimePayment}
-          </p>
-          <p>{currentTranslation?.OR}</p>
-        </div>
-      )}
       {convertCurrencyStringToDouble(props.otherPaymentAmount) > 0 && (
         <p>
           {props.otherPaymentMethod} {props.otherPaymentAmount}

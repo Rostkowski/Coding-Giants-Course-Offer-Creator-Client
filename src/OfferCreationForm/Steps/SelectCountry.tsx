@@ -32,7 +32,7 @@ const SelectCountry: React.FC<ISelectCountry> = (props) => {
       countryCode: "IT",
       countryName: "Italy",
       onlineMainPhone: "+39 345 993 5676",
-      onlineMainEmail: "info@codinggiants.eit",
+      onlineMainEmail: "info@codinggiants.it",
     },
   ];
 
