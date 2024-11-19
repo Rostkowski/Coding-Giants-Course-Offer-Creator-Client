@@ -27,12 +27,17 @@ const CourseOffer: React.FC<ICourseOffer> = (props) => {
   const isStationary = props.selectedCourseKind.includes("STATIONARY");
   const [isToastVisible, setToastVisibility] = useState(false);
 
-  function copyToClip(str: string) {
-    const blob = new Blob([str], { type: 'text/html' });
-    const item = new ClipboardItem({ 'text/html': blob });
-    navigator.clipboard.write([item]);
-    setToastVisibility(true);
-  };
+function copyToClip(str: string) {
+    const blob = new Blob([str], { type: 'text/plain' });
+    const item = new ClipboardItem({ 'text/plain': blob });
+    navigator.clipboard.write([item])
+        .then(() => {
+            setToastVisibility(true);
+        })
+        .catch((error) => {
+            console.error('Failed to copy:', error);
+        });
+}
 
   useEffect(() => {
     props.selectedCourse.forEach((course) => {
