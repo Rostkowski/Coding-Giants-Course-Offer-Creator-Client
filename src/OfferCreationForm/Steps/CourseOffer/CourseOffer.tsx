@@ -17,11 +17,6 @@ interface ICourseOffer {
 
 const CourseOffer: React.FC<ICourseOffer> = (props) => {
   const editorRef = useRef<any>(null);
-  const log = () => {
-    if (editorRef.current != null) {
-      console.log(editorRef.current.getContent());
-    }
-  };
   const [selectedCoursesArray, setSelectedCoursesArray] = useState<any[]>([]);
   const [timetableData, setTimetableData] = useState<any[]>([]);
   const isStationary = props.selectedCourseKind.includes("STATIONARY");
@@ -85,7 +80,7 @@ function copyToClip(str: string) {
           });
         });
     });
-  }, []);
+  });
 
   return (
     <>

@@ -1,18 +1,6 @@
 #!/bin/bash
 set -x
 
-npm install
-npm run build
-
-if [ $? -eq 0 ]; then
-    echo "npm build succeeded"
-else
-    echo "npm build failed"
-    exit 1
-fi
-
-set +x
-
 source_dir="./build"
 destination_dir="/var/www/html/offer-creator"
 
