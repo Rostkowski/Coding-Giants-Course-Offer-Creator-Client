@@ -1,0 +1,25 @@
+name: Production workflow for deploying offer creator
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-test-and-deploy:
+    runs-on: self-hosted
+    environment: production
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{env.NODE_VERSION}}
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.13.1
+        cache: 'npm'
+        
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test --if-present
+
+    - name: Deploy to production
+      if: ${{ success() }}
+      run: ./scripts/deploy.sh
