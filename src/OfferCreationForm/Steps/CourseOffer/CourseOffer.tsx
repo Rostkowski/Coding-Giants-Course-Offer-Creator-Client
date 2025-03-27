@@ -33,7 +33,6 @@ function copyToClip(str: string) {
             console.error('Failed to copy:', error);
         });
 }
-
   useEffect(() => {
     props.selectedCourse.forEach((course) => {
       fetch(
@@ -80,7 +79,8 @@ function copyToClip(str: string) {
           });
         });
     });
-  });
+  // eslint-disable-next-line
+  }, []);
 
   return (
     <>
