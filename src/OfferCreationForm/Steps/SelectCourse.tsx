@@ -25,7 +25,7 @@ const SelectCourse: React.FC<ISelectCourse> = (props) => {
   useEffect(() => {
     setCoursesPresence(false);
     fetch(
-      `${environment.baseApiUrl}/https://giganciprogramowaniaformularz.edu.pl/api/Course/${
+      `${environment.baseApiUrl}https://giganciprogramowaniaformularz.edu.pl/api/Course/${
         isStationary ? "coursesByLocalisation" : "coursesByPostCode"
       }/${props.selectedCourseKind}/${
         isStationary ? props.selectedLocation.toString() : "00000"

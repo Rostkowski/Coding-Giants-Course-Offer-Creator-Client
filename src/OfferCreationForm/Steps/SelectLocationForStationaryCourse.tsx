@@ -27,7 +27,7 @@ const SelectLocationForStationaryCourse: React.FC<
   useEffect(() => {
     setLocationsPresence(false);
     fetch(
-      `${environment.baseApiUrl}/https://giganciprogramowaniaformularz.edu.pl/api/Localisation/localisationsByCourseKind/${props.selectedCourseKind}`,
+      `${environment.baseApiUrl}https://giganciprogramowaniaformularz.edu.pl/api/Localisation/localisationsByCourseKind/${props.selectedCourseKind}`,
       {
         method: "GET",
         headers: {

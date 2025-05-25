@@ -17,7 +17,7 @@ const SelectCourseKind: React.FC<ISelectCourseStep> = (props) => {
   useEffect(() => {
     setCourseKindsPresence(false);
     fetch(
-      `${environment.baseApiUrl}/https://giganciprogramowaniaformularz.edu.pl/api/Course/courseKindsProgrammingType`,
+      `${environment.baseApiUrl}https://giganciprogramowaniaformularz.edu.pl/api/Course/courseKindsProgrammingType`,
       {
         method: "GET",
         headers: {

@@ -36,7 +36,7 @@ function copyToClip(str: string) {
   useEffect(() => {
     props.selectedCourse.forEach((course) => {
       fetch(
-        `${environment.baseApiUrl}/https://giganciprogramowaniaformularz.edu.pl/api/Course/courses/${course.value}`,
+        `${environment.baseApiUrl}https://giganciprogramowaniaformularz.edu.pl/api/Course/courses/${course.value}`,
         {
           method: "GET",
           headers: {
@@ -61,7 +61,7 @@ function copyToClip(str: string) {
 
       fetch(
         `${environment.baseApiUrl
-        }/https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
+        }https://giganciprogramowaniaformularz.edu.pl/api/Timetable/${isStationary ? "timetablesByLocalisationId" : "timetablesByPostalCode"
         }/${props.selectedCourseKind}/${course.value}/${isStationary ? props.selectedLocation.toString() : "00000"
         }/0`,
         {
