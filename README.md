@@ -11,6 +11,15 @@ This is a client-side application for creating course offers for Coding Giants, 
 *   **Course Selection:** The user can select one or more courses to be included in the offer.
 *   **Customizable Offer Generation:** The generated offer is based on the user's selections and includes all the relevant details, such as course descriptions, schedules, and contact information.
 
+## Architecture
+
+The application is built with React and follows a component-based architecture.
+
+*   **Component-Based:** The UI is broken down into reusable components, located in the `src/OfferCreationForm/Steps` directory.
+*   **Container/Presentational Pattern:** The `OfferCreationForm` component acts as a container component, managing the application's state and logic. The components in the `src/OfferCreationForm/Steps` directory are presentational components, responsible for rendering the UI for each step of the form.
+*   **Model Layer:** The `src/models` directory contains data models used in the application, which helps to structure the data and ensure type safety with TypeScript.
+*   **Styling:** The application uses Bootstrap for styling, with some custom styles in `src/App.css` and `src/index.css`.
+
 ## Getting Started
 
 ### Prerequisites
@@ -50,6 +59,34 @@ To open the Cypress Test Runner, use the following command:
 ```bash
 npx cypress open
 ```
+
+## Deployment
+
+The project includes a deployment script at `scripts/deploy.sh`. This script copies the contents of the `build` directory to `/var/www/html/offer-creator`.
+
+To deploy the application, first build the project:
+
+```bash
+npm run build
+```
+
+Then run the deployment script:
+
+```bash
+./scripts/deploy.sh
+```
+
+**Note:** You may need to adjust the `destination_dir` variable in the script to match your server's configuration.
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration and continuous deployment. The workflow is defined in `.github/workflows/deploy-to-production.yml`.
+
+The workflow is triggered on every push to the `main` branch and performs the following steps:
+
+1.  Builds the application.
+2.  Runs the tests.
+3.  If the build and tests are successful, it deploys the application to production using the `scripts/deploy.sh` script.
 
 ## Built With
 
