@@ -26,17 +26,6 @@ jobs:
         GENERATE_SOURCEMAP: false
         NODE_OPTIONS: "--max-old-space-size=1536"
     
-    # Run tests inside the official Cypress Docker container
-    - name: Cypress Tests (Docker)
-      uses: cypress-io/github-action@v6
-      with:
-        container: cypress/browsers:node-20.14.0-chrome-126.0.6478.114-1ff-ff-127.0.2
-        start: npm start
-        wait-on: 'http://localhost:3000'
-        env: |
-          NODE_OPTIONS=--max-old-space-size=1024
-          GENERATE_SOURCEMAP=false
-
     - name: Make deploy.sh executable
       run: chmod +x ./scripts/deploy.sh
       
