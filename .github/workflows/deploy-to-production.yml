@@ -10,16 +10,25 @@ jobs:
     environment: production
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js ${{env.NODE_VERSION}}
+    
+    - name: Use Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{env.NODE_VERSION}}
+        node-version: '20' # Or your specific version
         cache: 'npm'
         
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test --if-present
+    - name: Install dependencies
+      run: npm ci
     
+    - name: Build with 2GB RAM Optimization
+      run: npm run build --if-present
+      env:
+        GENERATE_SOURCEMAP: false
+        NODE_OPTIONS: "--max-old-space-size=1536 --optimize_for_size"
+    
+    - name: Test
+      run: npm test --if-present
+      
     - name: Make deploy.sh executable
       run: chmod +x ./scripts/deploy.sh
       
