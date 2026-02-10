@@ -28,7 +28,30 @@ const SelectCourseKind: React.FC<ISelectCourseStep> = (props) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setCourseKinds([...data.onlineKinds, ...data.stationaryKinds]);
+        console.log("📚 Course kinds data received:", data);
+
+        // Handle n8n proxy wrapping response in array
+        let responseData = data;
+        if (Array.isArray(data) && data.length > 0) {
+          console.log("📚 Response is wrapped in array, extracting first element");
+          responseData = data[0];
+        }
+
+        // Handle different response formats
+        const onlineKinds = Array.isArray(responseData?.onlineKinds) ? responseData.onlineKinds : [];
+        const stationaryKinds = Array.isArray(responseData?.stationaryKinds) ? responseData.stationaryKinds : [];
+
+        if (onlineKinds.length === 0 && stationaryKinds.length === 0) {
+          console.warn("No course kinds found in response:", data);
+        }
+
+        console.log(`📚 Found ${onlineKinds.length} online kinds, ${stationaryKinds.length} stationary kinds`);
+        setCourseKinds([...onlineKinds, ...stationaryKinds]);
+        setCourseKindsPresence(true);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch course kinds:", error);
+        setCourseKinds([]);
         setCourseKindsPresence(true);
       });
   }, [props.currentCountryCode, props.currentLanguage]);

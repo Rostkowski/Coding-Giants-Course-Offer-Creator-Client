@@ -1,0 +1,93 @@
+{
+	"meta": {
+		"generatedAt": "2026-02-10T21:48:30.664Z",
+		"tasksAnalyzed": 10,
+		"totalTasks": 10,
+		"analysisCount": 10,
+		"thresholdScore": 5,
+		"projectName": "Task Master",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "Define TypeScript interfaces for comprehensive endpoint",
+			"complexityScore": 2,
+			"recommendedSubtasks": 0,
+			"expansionPrompt": "None needed",
+			"reasoning": "This is a straightforward definition of TypeScript interfaces based on a known JSON structure. It involves creating a new file or updating an existing one with no logic implementation, just type definitions. The complexity is low as it's purely declarative."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "Create course kind filtering utility with mapping",
+			"complexityScore": 4,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down the implementation of the filtering utility into: 1) Defining the filter predicates for each of the 9 course kinds ensuring all edge cases in the logic are covered (e.g., checking both type and length). 2) Implementing the main filter function with error logging. 3) Creating unit tests to verify each filter predicate against mock data.",
+			"reasoning": "While the logic isn't algorithmically complex, defining 9 specific filter predicates requires careful attention to detail to match the business rules exactly. Errors here will directly result in missing or incorrect courses in the UI. Testing each predicate increases the effort."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Implement comprehensive endpoint response transformation",
+			"complexityScore": 3,
+			"recommendedSubtasks": 0,
+			"expansionPrompt": "None needed",
+			"reasoning": "This task involves iterating over a nested array structure and flattening it. The transformation logic is clearly defined in the description. The main requirement is preserving specific fields like 'age'. It's a standard data manipulation task."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Implement course deduplication utility",
+			"complexityScore": 3,
+			"recommendedSubtasks": 0,
+			"expansionPrompt": "None needed",
+			"reasoning": "The logic described (using a Set for O(1) lookup and filtering the supplementary list) is a standard pattern for array merging and deduplication. The complexity is low, but correctness is critical to avoid duplicate keys in React lists."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Create comprehensive endpoint fetch function",
+			"complexityScore": 3,
+			"recommendedSubtasks": 0,
+			"expansionPrompt": "None needed",
+			"reasoning": "This is a standard async fetch wrapper. The requirements include adding specific headers and basic error handling. It follows existing patterns in the codebase (using `environment.baseApiUrl`). No complex state management or side effects are involved here."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Integrate dual endpoint fetching in SelectCourse component",
+			"complexityScore": 7,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "The integration into `SelectCourse.tsx` is complex. Subtasks: 1) Refactor the existing single-fetch `useEffect` to support parallel execution using `Promise.all`. 2) Implement the state updates to handle the merged data structure. 3) Ensure dependency arrays in `useEffect` are correct to avoid infinite loops or stale closures. 4) Verify that the loading state (`setCoursesPresence`) correctly wraps the entire parallel operation.",
+			"reasoning": "This is the most complex task. It involves modifying the core logic of a critical component (`SelectCourse`). Managing async state, parallel requests, race conditions (if dependencies change quickly), and ensuring backward compatibility with the existing view logic significantly increases the risk and effort."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Implement graceful error handling and fallback logic",
+			"complexityScore": 5,
+			"recommendedSubtasks": 2,
+			"expansionPrompt": "1) Implement the 'settled' logic (using `Promise.all` or `Promise.allSettled` wrapper) to distinguish between which endpoint failed. 2) Create specific UI feedback or console logging strategies for partial failures (e.g., toast notification if one source fails but data is still shown).",
+			"reasoning": "Graceful degradation requires careful conditional logic. You need to handle four distinct states: both success, primary fail, secondary fail, both fail. Ensuring the UI remains usable and doesn't crash or show a 'loading' spinner forever in partial failure states adds complexity."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Create Cypress test fixtures for comprehensive endpoint",
+			"complexityScore": 2,
+			"recommendedSubtasks": 0,
+			"expansionPrompt": "None needed",
+			"reasoning": "Creating static JSON fixtures is low complexity. The only requirement is ensuring the data structure matches the interfaces defined in Task 1 and contains the specific edge case data (duplicates vs. unique) needed for tests."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Write Cypress E2E tests for dual endpoint integration",
+			"complexityScore": 6,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "1) Setup the `cy.intercept` routes for both endpoints to return the fixtures. 2) Write test cases for the 'Happy Path' where merged data is asserted. 3) Write test cases for the 'Partial Failure' scenarios to ensure the fallback logic in the UI works as expected.",
+			"reasoning": "Writing reliable E2E tests for async operations involves managing waits and intercepts correctly. Testing the partial failure scenarios (simulating 500 errors on specific routes) requires precise control over the network mocking layer."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Manual testing and documentation",
+			"complexityScore": 2,
+			"recommendedSubtasks": 0,
+			"expansionPrompt": "None needed",
+			"reasoning": "Manual testing is time-consuming but technically simple. The checklist is provided. Documentation is straightforward. The score reflects effort rather than technical difficulty."
+		}
+	]
+}

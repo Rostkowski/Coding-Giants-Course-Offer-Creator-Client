@@ -27,7 +27,7 @@ const SelectLocationForStationaryCourse: React.FC<
   useEffect(() => {
     setLocationsPresence(false);
     fetch(
-      `${environment.baseApiUrl}https://giganciprogramowaniaformularz.edu.pl/api/Localisation/localisationsByCourseKind/${props.selectedCourseKind}`,
+      `${environment.locationsBaseUrl}https://giganciprogramowaniaformularz.edu.pl/api/Localisation/localisationsByCourseKind/${props.selectedCourseKind}`,
       {
         method: "GET",
         headers: {
@@ -38,7 +38,39 @@ const SelectLocationForStationaryCourse: React.FC<
     )
       .then((response) => response.json())
       .then((data) => {
-        setCourseKindLocations([...data]);
+        console.log("📍 Locations data received:", data);
+
+        // n8n wraps all responses in an array, so unwrap if needed
+        let unwrappedData = data;
+        if (Array.isArray(data) && data.length > 0 && !data[0]?.id) {
+          // If first element doesn't have an id, it might be a wrapped response
+          // Try to unwrap one level
+          console.log("📍 Detected potential n8n array wrapper");
+          if (Array.isArray(data[0])) {
+            unwrappedData = data[0];
+            console.log("📍 Unwrapped to array of locations");
+          }
+        }
+
+        // Handle different response formats
+        if (Array.isArray(unwrappedData)) {
+          // Array of locations (expected format)
+          console.log(`📍 Found ${unwrappedData.length} locations`);
+          setCourseKindLocations(unwrappedData);
+        } else if (unwrappedData && typeof unwrappedData === 'object' && unwrappedData.id) {
+          // Single location object - wrap it in an array
+          console.log("📍 Single location received, wrapping in array");
+          setCourseKindLocations([unwrappedData]);
+        } else {
+          console.warn("Locations endpoint returned unexpected format:", data);
+          setCourseKindLocations([]);
+        }
+
+        setLocationsPresence(true);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch locations:", error);
+        setCourseKindLocations([]);
         setLocationsPresence(true);
       });
   }, [
