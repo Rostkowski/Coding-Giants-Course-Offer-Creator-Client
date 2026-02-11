@@ -1,7 +1,6 @@
 import {
   ComprehensiveCourse,
   ComprehensiveCoursesResponse,
-  CourseKindFilter,
   CourseKindFilters,
   TransformedCourse,
 } from "../models/CourseModels";
