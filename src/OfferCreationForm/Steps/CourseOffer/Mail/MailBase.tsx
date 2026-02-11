@@ -56,9 +56,9 @@ const MailBase: React.FC<IMailBase> = (props) => {
           courseDescription={courseObject.description}
           courseDuration={courseObject.duration}
           courseFrequency={courseObject.frequency}
-          amountOneTimePayment={courseObject.price.ammountOneTimePayment}
-          otherPaymentAmount={courseObject.price.ammount}
-          otherPaymentMethod={courseObject.price.method}
+          amountOneTimePayment={courseObject.price?.ammountOneTimePayment}
+          otherPaymentAmount={courseObject.price?.ammount}
+          otherPaymentMethod={courseObject.price?.method}
           coursePlan={courseObject.plan}
           selectedCourseKind={props.selectedCourseKind}
           selectedLocation={props.selectedLocation}

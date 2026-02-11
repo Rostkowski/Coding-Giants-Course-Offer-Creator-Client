@@ -1,3 +1,4 @@
 {
-    "baseApiUrl": "https://n8n.rostkowski.uk/webhook/b1220a02-273a-4c1a-ac0b-25c9adf3e73b?link="
+    "baseApiUrl": "https://n8n.rostkowski.uk/webhook/b1220a02-273a-4c1a-ac0b-25c9adf3e73b?link=",
+    "locationsBaseUrl": "https://n8n.rostkowski.uk/webhook/e1f0f4aa-f4b7-4cde-b614-45a6dfc1b563?link="
 }
