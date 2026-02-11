@@ -2,7 +2,7 @@
 set -x
 
 source_dir="./build"
-destination_dir="/var/www/html/offer-creator"
+destination_dir="/var/www/html/offer_creator_rostkowski_uk"
 
 if [ ! -d "$source_dir" ]; then
     echo "Source directory not found: $source_dir"
