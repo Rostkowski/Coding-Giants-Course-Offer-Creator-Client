@@ -110,7 +110,7 @@ const CourseDetails: React.FC<ICourseDetails> = (props) => {
             style={{ alignItems: "left", textAlign: "left" }}
           >
             <p>
-              <b>{lesson.title}</b>
+              <b>{lesson.title?.replace(/Lekcja/g, 'Spotkanie')}</b>
             </p>
             {lesson.description?.length > 0 && <ul>
               <li>{lesson.description}</li>
